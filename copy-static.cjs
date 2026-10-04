@@ -17,6 +17,7 @@ function copyRecursive(src, dest) {
   }
 }
 
+// 1. Copy companion folders
 const foldersToCopy = [
   '2-Design-Source',
   '3-Animations',
@@ -35,6 +36,7 @@ foldersToCopy.forEach((folder) => {
   }
 });
 
+// 2. Copy documentation files
 const filesToCopy = ['README.txt', 'README.md'];
 filesToCopy.forEach((file) => {
   const src = path.join(rootDir, file);
@@ -44,3 +46,19 @@ filesToCopy.forEach((file) => {
     console.log(`Copied ${file} to dist/${file}`);
   }
 });
+
+// 3. Generate HTML fallbacks for all SPA routes (both .html and /index.html)
+const routes = ['about', 'services', 'clients', 'contact'];
+const indexPath = path.join(distDir, 'index.html');
+
+if (fs.existsSync(indexPath)) {
+  routes.forEach((route) => {
+    // route.html
+    fs.copyFileSync(indexPath, path.join(distDir, `${route}.html`));
+    // route/index.html
+    const routeDir = path.join(distDir, route);
+    if (!fs.existsSync(routeDir)) fs.mkdirSync(routeDir, { recursive: true });
+    fs.copyFileSync(indexPath, path.join(routeDir, 'index.html'));
+    console.log(`Generated fallback HTML for /${route} and /${route}.html`);
+  });
+}
