@@ -11,12 +11,14 @@ node_modules
 dist
 dist-ssr
 *.local
+*.tsbuildinfo
 
 # Scratch and intermediate artifacts
 extracted_assets/
 extracted_fonts/
 page_*.png
 pdf_content.txt
+3d videos/
 
 # Editor directories and files
 .vscode/*

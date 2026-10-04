@@ -147,6 +147,24 @@ export default function WhyAdsPlus({ onOpenProjectBrief }: WhyAdsPlusProps): Rea
             </div>
           ))}
         </div>
+
+        {/* Action CTA */}
+        <div style={{ marginTop: '4rem', textAlign: 'center' }}>
+          <button
+            type="button"
+            onClick={onOpenProjectBrief}
+            className="btn-primary"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              cursor: 'pointer'
+            }}
+          >
+            <span>START A STRATEGIC BRIEF</span>
+            <span style={{ color: '#ffffff' }}>+</span>
+          </button>
+        </div>
       </div>
     </section>
   );

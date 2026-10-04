@@ -49,6 +49,41 @@ export default function Clients(): React.JSX.Element {
           </div>
         </div>
 
+        {/* Industry Filter Buttons */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '0.6rem',
+            marginBottom: '2.5rem'
+          }}
+        >
+          {['ALL', 'Real Estate', 'Fitness & Wellness', 'Technology & FinTech', 'Commercial & Retail'].map((category) => {
+            const isActive = activeFilter === category;
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setActiveFilter(category)}
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                  padding: '0.45rem 1rem',
+                  border: isActive ? '1px solid #ed1c24' : '1px solid rgba(255, 255, 255, 0.12)',
+                  backgroundColor: isActive ? 'rgba(237, 28, 36, 0.15)' : 'rgba(0, 0, 0, 0.4)',
+                  color: isActive ? '#ffffff' : '#bab6ad',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Client Logos Grid */}
         <div
           style={{
