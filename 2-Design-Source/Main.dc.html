@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ads Plus+ — Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:"Aileron";src:url(/_blob/17b026c795030206780b2ee0732ed568) format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Aileron";src:url(/_blob/aea3d7e93936b0c532f822c368363251) format("truetype");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"Aileron";src:url(/_blob/7b16f5d3eee1cb09129de14622073ab9) format("truetype");font-weight:900;font-style:italic;font-display:swap}
+body{margin:0;background:#000}
+a{color:#f2f0ec}a:hover{color:#ec1c24}
+::selection{background:#ec1c24;color:#fff}
+.grain{position:absolute;inset:0;pointer-events:none;z-index:60;background-image:url(/_blob/f9200c0f6dcfb44579c9daa0f8224dc3);background-size:256px 256px;opacity:.06;mix-blend-mode:overlay}
+.navlink{text-decoration:none;padding:10px 0;position:relative;color:#8f8b84}
+.navlink:hover,.navlink[aria-current="page"]{color:#f2f0ec}
+.navlink[aria-current="page"]::after{content:"+";color:#ec1c24;position:absolute;right:-12px;top:4px;font-weight:700}
+.btn{text-decoration:none;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;transition:background .3s,border-color .3s,color .3s,box-shadow .3s}
+.btn-red{background:#c8111a;color:#fff;box-shadow:0 0 0 rgba(236,28,36,0)}.btn-red:hover{background:#ec1c24;color:#fff;box-shadow:0 0 40px rgba(236,28,36,.45)}
+.btn-line{border:1px solid #2e2e2e;color:#f2f0ec}.btn-line:hover{border-color:#f2f0ec;color:#fff}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #ec1c24;outline-offset:3px}
+.vid{width:100%;height:100%;object-fit:cover;display:block}
+/* cinematic frame with crop marks */
+.frame{position:relative;background:#050505;border:1px solid #161616}
+.frame .cm{position:absolute;width:18px;height:18px;border-color:#ec1c24;border-style:solid;z-index:3;pointer-events:none}
+.frame .c1{top:-8px;left:-8px;border-width:1px 0 0 1px}.frame .c2{top:-8px;right:-8px;border-width:1px 1px 0 0}
+.frame .c3{bottom:-8px;left:-8px;border-width:0 0 1px 1px}.frame .c4{bottom:-8px;right:-8px;border-width:0 1px 1px 0}
+.frame .shade{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 120px rgba(0,0,0,.85);z-index:2}
+/* light beam + floating plus particles */
+.beam{position:absolute;top:-20%;left:30%;width:46%;height:150%;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.03) 55%,rgba(255,255,255,0) 75%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);transform:rotate(-28deg);filter:blur(22px);pointer-events:none;z-index:1}
+.pts span{position:absolute;color:#ec1c24;font-weight:700;opacity:0;animation:drift 12s linear infinite;pointer-events:none}
+.pts span:nth-child(1){left:8%;top:72%;font-size:14px;animation-delay:0s}
+.pts span:nth-child(2){left:22%;top:30%;font-size:9px;animation-delay:2s}
+.pts span:nth-child(3){left:38%;top:80%;font-size:18px;animation-delay:4s}
+.pts span:nth-child(4){left:52%;top:20%;font-size:11px;animation-delay:1s}
+.pts span:nth-child(5){left:64%;top:66%;font-size:16px;animation-delay:6s}
+.pts span:nth-child(6){left:78%;top:40%;font-size:10px;animation-delay:3s}
+.pts span:nth-child(7){left:88%;top:78%;font-size:13px;animation-delay:8s}
+.pts span:nth-child(8){left:12%;top:18%;font-size:12px;animation-delay:5s}
+.pts span:nth-child(9){left:46%;top:52%;font-size:8px;animation-delay:9s}
+.pts span:nth-child(10){left:92%;top:22%;font-size:15px;animation-delay:7s}
+@keyframes drift{0%{transform:translateY(20px) rotate(0);opacity:0}15%{opacity:.9}80%{opacity:.5}100%{transform:translateY(-140px) rotate(180deg);opacity:0}}
+/* 3D glass plus */
+.stage3d{perspective:1400px;display:flex;align-items:center;justify-content:center;position:relative;width:100%;height:100%}
+.plus3d{--s:clamp(220px,32vw,500px);width:var(--s);height:var(--s);position:relative;transform-style:preserve-3d;animation:plusspin 18s linear infinite}
+.plus3d.sm{--s:clamp(180px,22vw,320px)}
+.cube{position:absolute;left:50%;top:50%;transform-style:preserve-3d}
+.cube .f{position:absolute;left:0;top:0;border:1px solid rgba(255,160,160,.5);box-shadow:inset 0 0 70px rgba(255,30,40,.35),0 0 30px rgba(236,28,36,.12)}
+.cv{--w:calc(var(--s)/3);--h:var(--s);--d:calc(var(--s)/3)}
+.ch{--w:var(--s);--h:calc(var(--s)/3);--d:calc(var(--s)/3)}
+.cube .fr{width:var(--w);height:var(--h);transform:translate(-50%,-50%) translateZ(calc(var(--d)/2));background:linear-gradient(135deg,rgba(255,90,98,.42),rgba(150,6,14,.22) 55%,rgba(255,70,80,.34))}
+.cube .bk{width:var(--w);height:var(--h);transform:translate(-50%,-50%) rotateY(180deg) translateZ(calc(var(--d)/2));background:rgba(120,4,10,.30)}
+.cube .rt{width:var(--d);height:var(--h);transform:translate(-50%,-50%) rotateY(90deg) translateZ(calc(var(--w)/2));background:linear-gradient(180deg,rgba(180,10,20,.45),rgba(70,2,6,.5))}
+.cube .lt{width:var(--d);height:var(--h);transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(var(--w)/2));background:linear-gradient(180deg,rgba(255,60,70,.40),rgba(110,4,10,.45))}
+.cube .tp{width:var(--w);height:var(--d);transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--h)/2));background:rgba(255,120,126,.45)}
+.cube .bt{width:var(--w);height:var(--d);transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--h)/2));background:rgba(50,0,4,.6)}
+.reflect{position:absolute;left:0;right:0;top:100%;height:70%;transform:scaleY(-1);opacity:.14;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,0) 55%);mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,0) 55%);pointer-events:none}
+.floorglow{position:absolute;left:12%;right:12%;bottom:2%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(236,28,36,.5),rgba(236,28,36,0));filter:blur(14px);pointer-events:none}
+@keyframes plusspin{from{transform:rotateX(-16deg) rotateY(0deg)}to{transform:rotateX(-16deg) rotateY(360deg)}}
+/* 3D staircase */
+.stairs3d{--u:clamp(46px,5.4vw,78px);width:calc(var(--u)*6);height:calc(var(--u)*5);position:relative;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(-38deg);animation:stairsway 10s ease-in-out infinite}
+.stairs3d .cube .f{background:rgba(14,14,14,.92);border-color:#262626;box-shadow:none}
+.stairs3d .cube .fr{background:linear-gradient(180deg,#151515,#070707)}
+.stairs3d .cube .tp{background:#1b1b1b;animation:steplit 6s ease-in-out infinite}
+.s1{--w:calc(var(--u)*1.7);--d:calc(var(--u)*1.7);--h:var(--u);transform:translate3d(calc(var(--u)*-1.8),calc(var(--u)*1),0)}
+.s2{--w:calc(var(--u)*1.7);--d:calc(var(--u)*1.7);--h:calc(var(--u)*2);transform:translate3d(0,calc(var(--u)*0.5),0)}
+.s3{--w:calc(var(--u)*1.7);--d:calc(var(--u)*1.7);--h:calc(var(--u)*3);transform:translate3d(calc(var(--u)*1.8),0,0)}
+.s1 .tp{animation-delay:0s!important}.s2 .tp{animation-delay:1s!important}.s3 .tp{animation-delay:2s!important}
+@keyframes steplit{0%,8%{background:#1b1b1b;box-shadow:none}18%,70%{background:#ec1c24;box-shadow:0 0 60px rgba(236,28,36,.8)}85%,100%{background:#1b1b1b;box-shadow:none}}
+@keyframes stairsway{0%,100%{transform:rotateX(-22deg) rotateY(-38deg)}50%{transform:rotateX(-18deg) rotateY(-24deg)}}
+/* 3D extruded icons on glass tiles */
+.ico-wrap{perspective:600px;width:96px;height:96px;position:relative}
+.ico3d{width:96px;height:96px;position:relative;transform-style:preserve-3d;animation:icosway 7s ease-in-out infinite}
+.ico3d svg{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.9}
+.ico3d svg:nth-child(1){transform:translateZ(0);stroke:#ff4b52;filter:drop-shadow(0 0 8px rgba(236,28,36,.7))}
+.ico3d svg:nth-child(2){transform:translateZ(-2px);stroke:#d81920}.ico3d svg:nth-child(3){transform:translateZ(-4px);stroke:#bd141b}
+.ico3d svg:nth-child(4){transform:translateZ(-6px);stroke:#a21117}.ico3d svg:nth-child(5){transform:translateZ(-8px);stroke:#880e13}
+.ico3d svg:nth-child(6){transform:translateZ(-10px);stroke:#6e0b0f}.ico3d svg:nth-child(7){transform:translateZ(-12px);stroke:#55080b}
+.ico3d svg:nth-child(8){transform:translateZ(-14px);stroke:#3c0608}
+.pedestal{position:absolute;left:8%;right:8%;bottom:-14px;height:18px;border-radius:50%;background:radial-gradient(closest-side,rgba(236,28,36,.55),rgba(236,28,36,0));filter:blur(6px)}
+@keyframes icosway{0%,100%{transform:rotateX(14deg) rotateY(-34deg)}50%{transform:rotateX(8deg) rotateY(34deg)}}
+.card{position:relative;background:linear-gradient(180deg,#0a0a0a,#030303);border:1px solid #161616;border-radius:20px;transition:transform .5s,border-color .5s,box-shadow .5s;transform:perspective(900px) rotateX(0)}
+.card:hover{transform:perspective(900px) rotateX(4deg) translateY(-6px);border-color:#3a0b0e;box-shadow:0 30px 80px rgba(0,0,0,.9),0 0 50px rgba(236,28,36,.12)}
+.card:hover .ico3d{animation-duration:2.4s}
+@media (min-width:760px){.feat{grid-column:span 2}}
+/* marquees */
+.marq{overflow:hidden;white-space:nowrap}
+.marq .track{display:inline-flex;gap:48px;animation:marq 38s linear infinite;padding-right:48px}
+.marq.slow .track{animation-duration:70s}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.outline{color:transparent;-webkit-text-stroke:1px #3a3a3a}
+.industry{transition:color .3s,padding-left .3s}
+/* red plus cursor */
+.site{cursor:url(/_blob/bb133799c3c482dc8f853182bbdff424) 16 16,auto}
+.site a,.site button,.site select,.site label,.site summary{cursor:url(/_blob/f32d8ff01fb483309ee1e74c08556551) 32 32,pointer}
+.site input,.site textarea{cursor:text}
+/* opening intro */
+.intro{position:fixed;top:0;left:0;right:0;height:100vh;max-height:1200px;z-index:200;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;animation:introOut .9s 4s cubic-bezier(.7,0,.3,1) forwards}
+.intro.gone{display:none}
+.intro video{width:min(480px,66vw);height:auto;aspect-ratio:1/1;margin-bottom:-40px}
+.intro .ttl{margin:0;font-family:Aileron,sans-serif;font-weight:900;font-style:italic;letter-spacing:-.03em;font-size:clamp(46px,7vw,100px);line-height:1;color:#f2f0ec;clip-path:inset(0 100% 0 0);animation:wipe 1s 1.6s cubic-bezier(.7,0,.2,1) forwards}
+.intro .sub{margin:0;font-family:Aileron,sans-serif;font-weight:700;font-style:italic;font-size:15px;color:#8f8b84;opacity:0;animation:fadeup .8s 2.5s forwards}
+.intro .skip{position:absolute;right:28px;bottom:28px;background:none;font-family:inherit;font-size:14px;min-height:44px}
+.hero-in{opacity:0;animation:fadeup 1.1s 4.3s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes introOut{to{opacity:0;visibility:hidden}}
+@keyframes wipe{to{clip-path:inset(0 0 0 0)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* scroll story */
+.story-vis{position:relative;aspect-ratio:1/1;width:100%;border:1px solid #161616;background:#000;overflow:hidden}
+.story-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
+.story-vis img.on{opacity:1}
+.sprog{display:flex;gap:10px}.sprog span{flex:1;height:2px;background:#222;position:relative;overflow:hidden}
+.sprog span::after{content:"";position:absolute;inset:0;background:#ec1c24;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.sprog span.on::after{transform:scaleX(1)}
+.slab{color:#5f5c58;transition:color .5s}.slab.on{color:#f2f0ec}
+.sstep{min-height:520px;display:flex;flex-direction:column;justify-content:center;gap:14px;border-top:1px solid #161616;opacity:.4;transition:opacity .7s,transform .7s;transform:translateX(0)}
+.sstep.done{opacity:.6}.sstep.on{opacity:1;transform:translateX(8px)}
+.sstep .big{font-family:Aileron,sans-serif;font-weight:900;font-style:italic;font-size:clamp(90px,10vw,150px);line-height:.85;color:transparent;-webkit-text-stroke:1px #3a3a3a;transition:color .7s,-webkit-text-stroke-color .7s,text-shadow .7s}
+.sstep.on .big{color:#ec1c24;-webkit-text-stroke-color:#ec1c24;text-shadow:0 0 50px rgba(236,28,36,.45)}
+/* markets map */
+.mapfig{position:relative;margin:0;width:100%;aspect-ratio:1600/1072}
+.mapfig img{width:100%;height:100%;display:block}
+.mapov{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.arc{fill:none;stroke:#ec1c24;stroke-width:1.8;stroke-linecap:round;stroke-dasharray:5 10;opacity:.8;animation:dash 2.4s linear infinite}
+.arc.intl{stroke:#8f8b84;opacity:.6}
+.ring{fill:none;stroke:#ec1c24;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:ping 2.8s cubic-bezier(.2,.6,.4,1) infinite}
+.ring.r2{animation-delay:1.4s}
+.core{fill:#ec1c24;filter:drop-shadow(0 0 6px rgba(236,28,36,1))}
+.core.hq{fill:#fff}
+.lbl{font-family:Aileron,sans-serif;font-weight:700;font-style:italic;font-size:26px;fill:#e9e6e1}
+.lbl.sm{font-size:21px;fill:#a7a39c}.lbl.big{font-size:38px;font-weight:900;fill:#fff}.lbl.red{fill:#ec1c24}
+@keyframes dash{to{stroke-dashoffset:-60}}
+@keyframes ping{0%{transform:scale(.6);opacity:.95}100%{transform:scale(4.2);opacity:0}}
+@media (prefers-reduced-motion: reduce){.intro{display:none}.hero-in{opacity:1;animation:none}.arc,.ring{animation:none}}
+/* doors menu */
+.dm{position:relative;width:100%;aspect-ratio:1148/1632;background-image:url(/_blob/2f50df4a574322f67e3b75b2e5bcf1c7);background-size:cover;background-position:center;border:1px solid #161616}
+.dm .door{position:absolute;inset:0;display:block;background-image:url(/_blob/a5fdb621d4e6de30a92a2b340354a886);background-size:cover;background-position:center;opacity:0;transition:opacity .45s ease}
+.dm .door.on{opacity:1}
+.dm .door.red.on{filter:brightness(1.3) saturate(1.2)}
+.dm:not(.active) .door{animation:dhint 9.8s ease-in-out infinite}
+.dm .door:nth-of-type(2){animation-delay:1.4s}.dm .door:nth-of-type(3){animation-delay:2.8s}.dm .door:nth-of-type(4){animation-delay:4.2s}
+.dm .door:nth-of-type(5){animation-delay:5.6s}.dm .door:nth-of-type(6){animation-delay:7s}.dm .door:nth-of-type(7){animation-delay:8.4s}
+@keyframes dhint{0%,12%,100%{opacity:0}5%{opacity:.5}}
+.dm .tag{position:absolute;transform:translate(-50%,-50%) scale(.9);opacity:0;pointer-events:none;transition:opacity .3s,transform .35s;background:rgba(0,0,0,.84);border:1px solid #5a1015;color:#fff;padding:9px 16px;border-radius:999px;font-family:Aileron,sans-serif;font-weight:700;font-style:italic;font-size:14px;white-space:nowrap;box-shadow:0 0 30px rgba(236,28,36,.4);z-index:3}
+.dm .tag.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.dm .dhint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Aileron,sans-serif;font-weight:700;font-style:italic;font-size:15px;color:#cfcbc5;pointer-events:none;animation:glow 2.4s ease-in-out infinite;transition:opacity .3s;white-space:nowrap}
+.dm.active .dhint{opacity:0;animation:none}
+.dli{display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid #161616;text-decoration:none;color:#8f8b84;font-family:Aileron,sans-serif;font-weight:700;font-style:italic;font-size:18px;transition:color .3s,padding-left .3s}
+.dli .dn{color:#ec1c24;font-size:13px;width:34px}
+.dli .dar{margin-left:auto;color:#ec1c24;transition:transform .4s}
+.dli.on,.dli:hover{color:#fff;padding-left:8px}
+.dli.on .dar,.dli:hover .dar{transform:rotate(90deg)}
+/* spotlight hero */
+.hw{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hw span{position:absolute;font-family:Aileron,sans-serif;font-weight:900;font-style:italic;letter-spacing:-.03em;font-size:clamp(64px,9vw,150px);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(236,28,36,.9);white-space:nowrap}
+.hw span b{color:#ec1c24;-webkit-text-stroke:0}
+.spot{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle var(--sr,300px) at var(--mx,75%) var(--my,45%),rgba(0,0,0,0) 0%,rgba(0,0,0,.45) 42%,rgba(0,0,0,.94) 80%)}
+/* lights on */
+.lights{transition:filter 1.6s ease}
+.lights.off{filter:grayscale(1) contrast(1.05)}
+.lights.on{filter:grayscale(0) contrast(1)}
+.lights.done{filter:none}
+.lflash{position:fixed;inset:0;z-index:150;pointer-events:none;background:radial-gradient(circle at 50% 35%,rgba(236,28,36,.38),rgba(236,28,36,0) 62%);animation:lflash 1.4s ease-out forwards}
+@keyframes lflash{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+.lswitch{display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid #2e2e2e;border-radius:999px;padding:6px 16px 6px 6px;min-height:46px;color:#f2f0ec;font-family:Aileron,sans-serif;font-weight:700;font-style:italic;font-size:14px}
+.lswitch .trk{width:44px;height:26px;border-radius:999px;background:#1c1c1c;position:relative;box-shadow:inset 0 0 0 1px #333;transition:background .4s}
+.lswitch .knob{position:absolute;top:4px;left:4px;width:18px;height:18px;border-radius:50%;background:#8f8b84;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .4s,box-shadow .4s}
+.lswitch.on .trk{background:#3a0b0e}.lswitch.on .knob{transform:translateX(18px);background:#ec1c24;box-shadow:0 0 14px rgba(236,28,36,.9)}
+.lswitch.off{animation:hintpulse 2.2s ease-in-out infinite}
+@keyframes hintpulse{50%{box-shadow:0 0 0 7px rgba(255,255,255,.07)}}
+/* words build */
+.wb .w{color:#262626;transition:color .5s,text-shadow .5s}
+.wb .w.on{color:#f2f0ec}
+.wb .wp{color:#262626}.wb .wp.on{color:#ec1c24;text-shadow:0 0 34px rgba(236,28,36,.7)}
+/* magnetic buttons */
+.btn{transition:background .3s,border-color .3s,color .3s,box-shadow .3s,transform .4s cubic-bezier(.2,.7,.2,1)}
+/* 3D client wall */
+.lwall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.ltile{position:relative;aspect-ratio:2/1;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#151515,#080808 60%,#040404);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),inset 0 0 0 1px #1d1d1d,0 18px 40px rgba(0,0,0,.6);transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.ltile:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px #4a0d11,0 26px 60px rgba(0,0,0,.8),0 0 50px rgba(236,28,36,.2)}
+.ltile .lg{position:absolute;inset:12% 10%;background-image:url(/_blob/db7c2fbc95c58632d4f6d8bf22246fe8);background-size:100% 1700%;background-repeat:no-repeat;opacity:.78;transition:opacity .4s}
+.ltile:hover .lg{opacity:1}
+.ltile::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.16),rgba(255,255,255,0) 50%);opacity:0;transition:opacity .4s}
+.ltile:hover::after{opacity:1}
+/* footer clock */
+.cdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5f5c58;margin-right:8px;vertical-align:middle}
+.cdot.open{background:#ec1c24;box-shadow:0 0 10px rgba(236,28,36,.9);animation:glow 1.8s ease-in-out infinite}
+/* easter egg */
+.logobtn{display:flex;background:none;border:0;padding:0}
+.rain{position:fixed;inset:0;z-index:300;pointer-events:none;overflow:hidden}
+.rain i{position:absolute;top:-90px;width:var(--s);height:var(--s);animation:fall var(--d) cubic-bezier(.45,0,.8,.6) var(--dl) forwards;filter:drop-shadow(0 0 10px rgba(236,28,36,.75))}
+.rain i::before,.rain i::after{content:"";position:absolute;border-radius:3px;background:linear-gradient(135deg,rgba(255,110,116,.95),rgba(200,15,24,.92) 55%,rgba(110,4,10,.95));box-shadow:inset 0 0 0 1px rgba(255,190,190,.5)}
+.rain i::before{left:33%;width:34%;top:0;height:100%}
+.rain i::after{top:33%;height:34%;left:0;width:100%}
+@keyframes fall{to{transform:translateY(1500px) rotate(var(--r))}}
+.rtoast{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);margin:0;font-family:Aileron,sans-serif;font-weight:900;font-style:italic;letter-spacing:-.03em;font-size:clamp(44px,7vw,110px);line-height:1;color:#fff;white-space:nowrap;opacity:0;animation:toast 5.2s ease forwards}
+.rtoast span{color:#ec1c24}
+@keyframes toast{0%{opacity:0}12%,75%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.dm .door,.dm .dhint,.lswitch.off,.rain i{animation:none!important}.lights{transition:none}}
+/* premium glass icon tiles */
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.scard,.scard:hover{color:#f2f0ec}
+.tile{position:relative;width:104px;height:104px;border-radius:30px;display:grid;place-items:center;overflow:hidden;
+background:radial-gradient(120% 90% at 85% 100%,rgba(236,28,36,.38),rgba(236,28,36,0) 60%),linear-gradient(160deg,#202020 0%,#0d0d0d 52%,#060606 100%);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.9),inset 0 0 0 1px #262626,0 20px 44px rgba(0,0,0,.75),0 0 70px rgba(236,28,36,.16);
+transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s;animation:breathe 4.5s ease-in-out infinite}
+.tile::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),rgba(236,28,36,0) 0deg,rgba(236,28,36,0) 230deg,rgba(236,28,36,.95) 320deg,#ffd0d0 350deg,rgba(236,28,36,0) 360deg);
+-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ang 5s linear infinite;pointer-events:none;z-index:2}
+.tile .shine{position:absolute;top:-20%;bottom:-20%;width:45%;left:-60%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.22) 50%,rgba(255,255,255,0));transform:skewX(-18deg);animation:shine 6s ease-in-out infinite;pointer-events:none;z-index:1}
+.feat .tile{width:140px;height:140px;border-radius:40px}
+.tile svg{width:58px;height:58px;overflow:visible;position:relative;z-index:1}
+.feat .tile svg{width:78px;height:78px}
+.tile .f{fill:rgba(236,28,36,.20);stroke:none}
+.tile .i{fill:none;stroke:#f6f4f0;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0;animation:draw 1.8s .2s cubic-bezier(.6,0,.2,1) both}
+.tile .a{fill:none;stroke:#ff2a32;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0;filter:drop-shadow(0 0 5px rgba(236,28,36,.95));animation:draw 1.8s .7s cubic-bezier(.6,0,.2,1) both,glow 3.2s 2.6s ease-in-out infinite}
+.tile .dot{fill:#ff2a32;filter:drop-shadow(0 0 5px rgba(236,28,36,.95));animation:blink 1.8s ease-in-out infinite}
+.tile .d2{animation-delay:.25s}.tile .d3{animation-delay:.5s}
+.scard:nth-child(2) .tile::before,.scard:nth-child(2) .shine{animation-delay:-.8s}.scard:nth-child(3) .tile::before,.scard:nth-child(3) .shine{animation-delay:-1.6s}
+.scard:nth-child(4) .tile::before,.scard:nth-child(4) .shine{animation-delay:-2.4s}.scard:nth-child(5) .tile::before,.scard:nth-child(5) .shine{animation-delay:-3.2s}
+.scard:nth-child(6) .tile::before,.scard:nth-child(6) .shine{animation-delay:-4s}.scard:nth-child(7) .tile::before,.scard:nth-child(7) .shine{animation-delay:-4.8s}
+.scard:hover .tile{transform:perspective(520px) rotateX(10deg) rotateY(-14deg) translateY(-4px) scale(1.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px #5a1015,0 28px 60px rgba(0,0,0,.85),0 0 90px rgba(236,28,36,.45)}
+.scard:hover .tile .i{animation:draw2 1.1s cubic-bezier(.6,0,.2,1) both}
+.scard:hover .tile .a{animation:draw2 1.1s .25s cubic-bezier(.6,0,.2,1) both}
+.scard:hover .tile::before{animation-duration:1.6s}
+.scard .arr{width:38px;height:38px;border-radius:50%;display:inline-grid;place-items:center;border:1px solid #3a3a3a;color:#ec1c24;font-weight:900;font-size:20px;transition:background .4s,border-color .4s,color .4s,transform .5s}
+.scard:hover .arr{background:#ec1c24;border-color:#ec1c24;color:#fff;transform:rotate(90deg)}
+.scard:focus-visible{outline:2px solid #ec1c24;outline-offset:4px}
+.wm{position:absolute;right:-26px;bottom:-96px;font-family:Aileron,sans-serif;font-weight:900;font-style:italic;font-size:300px;line-height:1;color:#0b0b0b;transition:color .8s,transform .8s;pointer-events:none}
+.feat .wm{font-size:420px;bottom:-150px}
+.scard:hover .wm{color:rgba(236,28,36,.10);transform:rotate(90deg)}
+@keyframes ang{to{--ang:360deg}}
+@keyframes shine{0%,62%{left:-60%}82%,100%{left:130%}}
+@keyframes breathe{0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.9),inset 0 0 0 1px #262626,0 20px 44px rgba(0,0,0,.75),0 0 60px rgba(236,28,36,.12)}50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.9),inset 0 0 0 1px #2c2c2c,0 20px 44px rgba(0,0,0,.75),0 0 90px rgba(236,28,36,.30)}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes draw2{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes glow{0%,100%{opacity:1}50%{opacity:.6}}
+@keyframes blink{0%,100%{opacity:.35}40%{opacity:1}}
+@media (prefers-reduced-motion: reduce){.tile,.tile::before,.tile .shine,.tile .i,.tile .a,.tile .dot{animation:none!important}}
+
+.zoom{transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s;filter:grayscale(.15) contrast(1.05)}
+.card:hover .zoom{transform:scale(1.07)}
+.srow .stitle,.srow .sarrow{transition:color .3s,transform .4s}
+.srow:hover .stitle{color:#ffffff}
+.srow:hover .sarrow{transform:rotate(90deg)}
+.srow:hover{background:linear-gradient(90deg,rgba(236,28,36,.07),rgba(236,28,36,0) 60%)}.industry:hover{color:#ec1c24;padding-left:12px}
+@media (prefers-reduced-motion: reduce){.plus3d,.ico3d,.stairs3d,.marq .track,.pts span,.cube .tp{animation:none!important}.plus3d{transform:rotateX(-16deg) rotateY(-30deg)}}
+input,textarea,select{font:inherit}
+</style>
+</helmet>
+<div class="site" style="position: relative; background: #000000; color: #f2f0ec; font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; min-height: 100vh; overflow-x: clip">
+<div class="grain"></div>
+<div class="intro {{introCls}}">
+<video src="/_blob/c517a8b11d94e05c76b0e4dc17b9e974" autoplay="" muted="" playsinline="" aria-label="The red glass Ads Plus+ plus assembling itself" ref="{{playVideo}}" style="mix-blend-mode: screen; object-fit: contain"></video>
+<p class="ttl">Built to sell<span style="color: #ec1c24">+</span></p>
+<p class="sub">Strategic marketing consultancy · Cairo · Since 2018</p>
+<button type="button" class="skip btn btn-line" onClick="{{skipIntro}}">Skip intro</button>
+</div>
+<sc-if value="{{flash}}" hint-placeholder-val="{{ false }}"><div class="lflash" aria-hidden="true"></div></sc-if>
+<sc-if value="{{rain}}" hint-placeholder-val="{{ false }}"><div class="rain" aria-hidden="true"><i style="left: 24.2%; --s: 21px; --d: 3.35s; --dl: 0.77s; --r: -154deg"></i><i style="left: 3.9%; --s: 35px; --d: 3.67s; --dl: 1.28s; --r: -233deg"></i><i style="left: 50.9%; --s: 29px; --d: 2.64s; --dl: 0.28s; --r: -254deg"></i><i style="left: 22.2%; --s: 18px; --d: 3.53s; --dl: 1.29s; --r: 219deg"></i><i style="left: 17.5%; --s: 27px; --d: 3.20s; --dl: 1.17s; --r: 164deg"></i><i style="left: 81.4%; --s: 28px; --d: 3.27s; --dl: 0.81s; --r: -246deg"></i><i style="left: 46.5%; --s: 20px; --d: 3.71s; --dl: 1.31s; --r: 123deg"></i><i style="left: 87.4%; --s: 36px; --d: 3.33s; --dl: 0.50s; --r: -331deg"></i><i style="left: 41.8%; --s: 27px; --d: 2.89s; --dl: 0.26s; --r: 252deg"></i><i style="left: 78.4%; --s: 19px; --d: 2.33s; --dl: 0.74s; --r: 385deg"></i><i style="left: 52.3%; --s: 33px; --d: 3.32s; --dl: 0.23s; --r: -154deg"></i><i style="left: 40.8%; --s: 24px; --d: 3.22s; --dl: 0.71s; --r: -302deg"></i><i style="left: 43.0%; --s: 36px; --d: 2.71s; --dl: 0.89s; --r: 171deg"></i><i style="left: 80.9%; --s: 40px; --d: 2.57s; --dl: 1.22s; --r: -182deg"></i><i style="left: 33.1%; --s: 23px; --d: 2.67s; --dl: 0.04s; --r: 162deg"></i><i style="left: 86.2%; --s: 27px; --d: 3.38s; --dl: 1.54s; --r: -285deg"></i><i style="left: 29.2%; --s: 22px; --d: 3.44s; --dl: 0.66s; --r: -270deg"></i><i style="left: 60.1%; --s: 46px; --d: 2.91s; --dl: 0.22s; --r: 201deg"></i><i style="left: 33.1%; --s: 18px; --d: 2.78s; --dl: 0.73s; --r: 305deg"></i><i style="left: 95.7%; --s: 36px; --d: 2.36s; --dl: 1.57s; --r: 226deg"></i><i style="left: 12.7%; --s: 19px; --d: 2.29s; --dl: 0.27s; --r: -140deg"></i><i style="left: 53.3%; --s: 36px; --d: 2.60s; --dl: 1.60s; --r: -390deg"></i><i style="left: 29.5%; --s: 31px; --d: 3.24s; --dl: 0.32s; --r: -243deg"></i><i style="left: 43.2%; --s: 33px; --d: 2.26s; --dl: 0.67s; --r: -339deg"></i><i style="left: 80.1%; --s: 33px; --d: 2.50s; --dl: 0.06s; --r: 244deg"></i><i style="left: 51.4%; --s: 42px; --d: 2.57s; --dl: 1.39s; --r: -286deg"></i><i style="left: 6.8%; --s: 28px; --d: 3.10s; --dl: 1.58s; --r: 140deg"></i><i style="left: 48.5%; --s: 20px; --d: 2.89s; --dl: 1.49s; --r: -292deg"></i><i style="left: 29.8%; --s: 33px; --d: 3.48s; --dl: 1.03s; --r: 390deg"></i><i style="left: 22.2%; --s: 43px; --d: 3.30s; --dl: 0.43s; --r: 374deg"></i><p class="rtoast">Built to sell<span>+</span></p></div></sc-if>
+<div class="lights {{lightsCls}}">
+<header style="position: relative; z-index: 10">
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px; padding-top: 24px; padding-bottom: 24px">
+<button type="button" class="logobtn" onClick="{{egg}}" aria-label="Ads Plus+"><img src="/_blob/dcc4ff63c4fca7a50df5fc93155b700e" alt="Ads Plus+" style="height: 30px; width: auto; display: block"></button>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 36px; align-items: center"><a onMouseEnter="{{scramble}}" class="navlink" href="Main.dc.html" aria-current="page" style="font-size: 15px">Home</a><a onMouseEnter="{{scramble}}" class="navlink" href="About.dc.html" style="font-size: 15px">About</a><a onMouseEnter="{{scramble}}" class="navlink" href="Services.dc.html" style="font-size: 15px">Services</a><a onMouseEnter="{{scramble}}" class="navlink" href="Clients.dc.html" style="font-size: 15px">Clients</a><a onMouseEnter="{{scramble}}" class="navlink" href="Contact.dc.html" style="font-size: 15px">Contact</a></nav>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center"><button type="button" class="lswitch {{switchCls}}" aria-pressed="{{lightsPressed}}" onClick="{{toggleLights}}"><span class="trk"><span class="knob"></span></span>Lights</button><a onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-line" href="Contact.dc.html" style="font-size: 15px; min-height: 46px">Start a project <span style="color: #ec1c24">+</span></a></div>
+</div>
+</header>
+<main>
+
+<section aria-label="Intro" class="spot-hero" onMouseMove="{{heroMove}}" onMouseLeave="{{heroLeave}}" style="position: relative; overflow: hidden; margin-top: -78px; padding-top: 78px">
+<div class="beam"></div>
+<div class="pts" aria-hidden="true" style="position: absolute; inset: 0; z-index: 1"><span>+</span><span>+</span><span>+</span><span>+</span><span>+</span><span>+</span><span>+</span><span>+</span><span>+</span><span>+</span></div>
+<div aria-hidden="true" class="hero-in" style="position: absolute; right: -6%; top: 4%; width: 62%; height: 82%; z-index: 1"><div class="stage3d"><video class="vid" src="/_blob/96ef2e17f25488c923d61de35c3ef695" autoplay="" loop="" muted="" playsinline="" aria-label="Rotating red glass plus on a dark floor" ref="{{playVideo}}" style="object-fit: contain; mix-blend-mode: screen"></video></div></div>
+<div class="hw" aria-hidden="true"><span style="left: 5%; top: 13%">Clarity<b>+</b></span><span style="left: 30%; top: 33%">Connection<b>+</b></span><span style="left: 54%; top: 6%">Direction<b>+</b></span></div>
+<div class="spot" aria-hidden="true"></div>
+<div class="hero-in" style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; min-height: clamp(620px, 58vw, 880px); display: flex; flex-direction: column; justify-content: flex-end; gap: 36px; padding-bottom: 72px">
+<p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #8f8b84; margin: 0">Strategic marketing consultancy <span style="color: #ec1c24">+</span> Cairo <span style="color: #ec1c24">+</span> Since 2018</p>
+<h1 style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(84px, 14vw, 230px); line-height: 0.8; margin: 0; color: #f2f0ec">Built<br>to sell<span style="color: #ec1c24">+</span></h1>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px">
+<p style="font-size: 19px; line-height: 1.65; color: #8f8b84; margin: 0; max-width: 42ch">For businesses where the decision matters. Strategy, creative and execution in one connected team — accountable to the business objective.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px"><a onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-red" href="Contact.dc.html" style="font-size: 16px">Start a project</a><a onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-line" href="Services.dc.html" style="font-size: 16px">Explore services</a></div>
+</div>
+</div>
+</section>
+<div class="marq" aria-hidden="true" style="padding: 28px 0; border-top: 1px solid #161616; border-bottom: 1px solid #161616"><div class="track"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Marketing consultancy</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Performance marketing</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Campaign management</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Media production</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Social media management</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Events &amp; activations</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">PR &amp; communications</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Marketing consultancy</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Performance marketing</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Campaign management</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Media production</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Social media management</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">Events &amp; activations</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05" class="outline">PR &amp; communications</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; color: #ec1c24">+</span></div></div>
+<section aria-label="Ads Plus+ in numbers"><div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 0 28px; padding-top: 40px; padding-bottom: 40px"><div style="flex: 1 1 220px; padding: 36px 28px 36px 0; border-top: 1px solid #161616; display: flex; flex-direction: column; gap: 8px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(56px, 6vw, 92px); line-height: 0.9; color: #f2f0ec">2018<span style="color: #ec1c24; font-size: 0.5em; vertical-align: top">+</span></span><span style="font-size: 15px; color: #8f8b84">Established in Cairo</span></div><div style="flex: 1 1 220px; padding: 36px 28px 36px 0; border-top: 1px solid #161616; display: flex; flex-direction: column; gap: 8px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(56px, 6vw, 92px); line-height: 0.9; color: #f2f0ec">7<span style="color: #ec1c24; font-size: 0.5em; vertical-align: top">+</span></span><span style="font-size: 15px; color: #8f8b84">Connected services</span></div><div style="flex: 1 1 220px; padding: 36px 28px 36px 0; border-top: 1px solid #161616; display: flex; flex-direction: column; gap: 8px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(56px, 6vw, 92px); line-height: 0.9; color: #f2f0ec">16<span style="color: #ec1c24; font-size: 0.5em; vertical-align: top">+</span></span><span style="font-size: 15px; color: #8f8b84">Industries served</span></div><div style="flex: 1 1 220px; padding: 36px 28px 36px 0; border-top: 1px solid #161616; display: flex; flex-direction: column; gap: 8px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(56px, 6vw, 92px); line-height: 0.9; color: #f2f0ec">3<span style="color: #ec1c24; font-size: 0.5em; vertical-align: top">+</span></span><span style="font-size: 15px; color: #8f8b84">Markets: Egypt, GCC, international</span></div></div></section>
+<section aria-label="Strategy before execution" style="position: relative; overflow: hidden; border-top: 1px solid #161616">
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0"><video class="vid" src="/_blob/9a288846aa0b6e24cf955ffe7cc9df77" autoplay="" loop="" muted="" playsinline="" ref="{{playVideo}}" style="object-position: 50% 50%"></video><div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,0,0,0.35), #000 78%)"></div></div>
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(140px, 16vw, 260px); padding-bottom: clamp(140px, 16vw, 260px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px">
+<p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">Strategy before execution</p>
+<h2 onMouseEnter="{{scramble}}" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(44px, 6.4vw, 104px); line-height: 0.9; margin: 0; color: #f2f0ec; max-width: 15ch">Business-first thinking before channels, content or campaigns<span style="color: #ec1c24">+</span></h2>
+</div>
+</section>
+
+<section aria-labelledby="who" style="border-top: 1px solid #161616">
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(96px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: clamp(40px, 6vw, 110px); align-items: center"><div style="flex: 1 1 380px"><div class="frame" style="aspect-ratio: 984 / 1364; max-height: 720px; width: 100%"><video class="vid" src="/_blob/4ba1fe84d2c01c9f91f0b874b8d400ac" autoplay="" loop="" muted="" playsinline="" aria-label="Office of cubicles where red screens switch on with counting numbers" ref="{{playVideo}}"></video><div class="shade"></div><span class="cm c1"></span><span class="cm c2"></span><span class="cm c3"></span><span class="cm c4"></span></div></div><div style="flex: 1.2 1 460px; display: flex; flex-direction: column; gap: 26px"><p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">About Ads Plus+</p><h2 onMouseEnter="{{scramble}}" id="who" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(48px, 6.6vw, 104px); line-height: 0.9; margin: 0; color: #f2f0ec">Who we are.</h2><p style="font-size: 21px; line-height: 1.65; color: #f2f0ec; margin: 0; max-width: 40ch">A specialized marketing consultancy and creative agency with hands-on experience across Egypt and the Gulf, alongside work across international markets.</p><p style="font-size: 17px; line-height: 1.65; color: #8f8b84; margin: 0; max-width: 50ch">Established in Cairo in 2018 and built around a strategic consultancy model: business understanding, creative direction, performance and delivery in one connected team. Marketing directions shaped by the objective, the market and the decision that needs to happen.</p><a href="About.dc.html" onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-line" style="font-size: 15px; align-self: flex-start">Our story <span style="color: #ec1c24">+</span></a></div></div>
+</section>
+
+<section aria-labelledby="reason" style="position: relative; overflow: hidden; background-color: #000">
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0"><video class="vid" src="/_blob/b6a5b147aa1ce6550c9d5464ce3d2df8" autoplay="" loop="" muted="" playsinline="" ref="{{playVideo}}" style="object-position: 70% 50%"></video><div style="position: absolute; inset: 0; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.88) 36%, rgba(0,0,0,0.1) 100%)"></div></div>
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(140px, 16vw, 240px); padding-bottom: clamp(140px, 16vw, 240px)">
+<div style="max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">The business reason</p>
+<h2 data-wb="1" id="reason" ref="{{wordsRef}}" class="wb" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(44px, 6vw, 92px); line-height: 0.92; margin: 0"><span class="w {{w0}}">Marketing</span> <span class="w {{w1}}">should</span> <span class="w {{w2}}">have</span> <span class="w {{w3}}">a</span> <span class="w {{w4}}">business</span> <span class="w {{w5}}">reason</span> <span class="w {{w6}}">behind</span> <span class="w {{w7}}">it.</span><span class="wp {{w8}}">+</span></h2>
+<p style="font-size: 19px; line-height: 1.65; color: #cfcbc5; margin: 0; max-width: 46ch"><span style="font-weight: 700; font-style: italic; color: #fff">Built to sell+</span> is the connection between the business objective, the market around it and the marketing direction built from there.</p>
+<p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: clamp(18px, 1.8vw, 24px); color: #f2f0ec; margin: 0; line-height: 1.7"><span style="color: #ec1c24">+</span> More clarity. <span style="color: #ec1c24">+</span> More direction. <span style="color: #ec1c24">+</span> More connection.</p>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="services" style="border-top: 1px solid #161616">
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(96px, 10vw, 160px); display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 20px"><p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">Services</p><h2 onMouseEnter="{{scramble}}" id="services" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(48px, 6.6vw, 104px); line-height: 0.9; margin: 0; color: #f2f0ec">Built to move<br>brands forward.</h2></div>
+<a href="Services.dc.html" onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-line" style="font-size: 15px">All services <span style="color: #ec1c24">+</span></a>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 90px); align-items: center">
+<div style="flex: 1 1 360px; max-width: 580px">
+<div class="dm {{dmCls}}"><a class="door red {{dc0}}" href="Contact.dc.html" aria-label="Start a project: marketing consultancy" onMouseEnter="{{dIn0}}" onMouseLeave="{{dOut}}" onFocus="{{dIn0}}" onBlur="{{dOut}}" style="clip-path: polygon(51.2% 10.0%, 51.2% 15.3%, 49.2% 19.7%, 33.7% 22.2%, 30.3% 21.1%, 24.7% 12.7%, 49.3% 7.2%)"></a><a class="door {{dc1}}" href="Services.dc.html" aria-label="Performance marketing" onMouseEnter="{{dIn1}}" onMouseLeave="{{dOut}}" onFocus="{{dIn1}}" onBlur="{{dOut}}" style="clip-path: polygon(99.7% 26.6%, 84.7% 33.6%, 74.8% 29.4%, 74.7% 22.5%, 82.8% 13.2%, 99.7% 19.7%)"></a><a class="door {{dc2}}" href="Services.dc.html" aria-label="Campaign management" onMouseEnter="{{dIn2}}" onMouseLeave="{{dOut}}" onFocus="{{dIn2}}" onBlur="{{dOut}}" style="clip-path: polygon(90.6% 42.3%, 100.0% 41.2%, 100.0% 55.5%, 89.7% 54.7%)"></a><a class="door {{dc3}}" href="Services.dc.html" aria-label="Media production" onMouseEnter="{{dIn3}}" onMouseLeave="{{dOut}}" onFocus="{{dIn3}}" onBlur="{{dOut}}" style="clip-path: polygon(99.7% 78.6%, 88.2% 86.9%, 84.8% 84.9%, 73.1% 72.4%, 81.3% 67.6%, 93.3% 67.6%, 99.7% 70.2%)"></a><a class="door {{dc4}}" href="Services.dc.html" aria-label="Social media management" onMouseEnter="{{dIn4}}" onMouseLeave="{{dOut}}" onFocus="{{dIn4}}" onBlur="{{dOut}}" style="clip-path: polygon(59.8% 93.1%, 33.6% 89.4%, 40.5% 72.9%, 48.5% 74.3%, 58.4% 79.7%, 60.7% 89.6%)"></a><a class="door {{dc5}}" href="Services.dc.html" aria-label="Events &amp; activations" onMouseEnter="{{dIn5}}" onMouseLeave="{{dOut}}" onFocus="{{dIn5}}" onBlur="{{dOut}}" style="clip-path: polygon(27.9% 67.0%, 11.1% 78.2%, 0.3% 67.5%, 0.3% 61.5%, 18.4% 57.3%)"></a><a class="door {{dc6}}" href="Services.dc.html" aria-label="PR &amp; communications" onMouseEnter="{{dIn6}}" onMouseLeave="{{dOut}}" onFocus="{{dIn6}}" onBlur="{{dOut}}" style="clip-path: polygon(24.6% 35.4%, 19.4% 42.8%, 11.8% 45.4%, 0.3% 44.4%, 0.3% 34.3%, 5.1% 26.6%, 9.7% 27.8%)"></a><span class="tag {{dc0}}" aria-hidden="true" style="left: 38.9%; top: 14.2%">Start a project +</span><span class="tag {{dc1}}" aria-hidden="true" style="left: 86.9%; top: 23.5%">Performance marketing +</span><span class="tag {{dc2}}" aria-hidden="true" style="left: 94.9%; top: 48.4%">Campaign management +</span><span class="tag {{dc3}}" aria-hidden="true" style="left: 88.0%; top: 75.9%">Media production +</span><span class="tag {{dc4}}" aria-hidden="true" style="left: 47.5%; top: 84.1%">Social media management +</span><span class="tag {{dc5}}" aria-hidden="true" style="left: 12.2%; top: 67.1%">Events &amp; activations +</span><span class="tag {{dc6}}" aria-hidden="true" style="left: 10.4%; top: 36.9%">PR &amp; communications +</span><span class="dhint" aria-hidden="true">Choose a door +</span></div>
+</div>
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 26px">
+<div style="min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end">
+<sc-if value="{{hasDoor}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; color: #ec1c24; font-size: 16px">{{cur.n}}</span>
+<h3 style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 4.4vw, 68px); line-height: 0.95; margin: 0; color: #f2f0ec">{{cur.t}}</h3>
+<p style="margin: 0; color: #8f8b84; font-size: 18px; line-height: 1.6; max-width: 40ch">{{cur.d}}</p>
+<a onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-red" href="{{cur.href}}" style="font-size: 16px; align-self: flex-start">{{cur.cta}} <span>+</span></a>
+</div>
+</sc-if>
+<sc-if value="{{noDoor}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; color: #ec1c24; font-size: 16px">Seven doors</span>
+<h3 style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 4.4vw, 68px); line-height: 0.95; margin: 0; color: #f2f0ec">Every project starts at the red door.</h3>
+<p style="margin: 0; color: #8f8b84; font-size: 18px; line-height: 1.6; max-width: 42ch">Hover a door to see what is behind it. Six doors open onto our services. The red one is where we start, with marketing consultancy.</p>
+</div>
+</sc-if>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; border-bottom: 1px solid #161616">
+<sc-for list="{{doorList}}" as="it" hint-placeholder-count="7"><li><a class="dli {{it.cls}}" href="{{it.href}}" onMouseEnter="{{it.enter}}" onMouseLeave="{{it.leave}}" onFocus="{{it.enter}}" onBlur="{{it.leave}}"><span class="dn">{{it.n}}</span><span>{{it.t}}</span><span class="dar" aria-hidden="true">+</span></a></li></sc-for>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="approach" style="position: relative; overflow: clip; border-top: 1px solid #161616">
+<div class="beam" style="left: -6%; opacity: .6"></div>
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(96px, 10vw, 160px)">
+<div style="display: flex; flex-direction: column; gap: 22px; max-width: 780px; margin-bottom: 40px"><p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">Approach</p><h2 onMouseEnter="{{scramble}}" id="approach" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(48px, 6.6vw, 104px); line-height: 0.9; margin: 0; color: #f2f0ec">From opportunity to execution.</h2><p style="font-size: 18px; line-height: 1.65; color: #8f8b84; margin: 0; max-width: 50ch">A consulting-led approach that connects business understanding, strategic thinking and effective execution. Scroll through the three steps.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 96px); align-items: flex-start">
+<div style="flex: 1 1 420px; position: sticky; top: 32px; display: flex; flex-direction: column; gap: 20px">
+<div class="story-vis"><img src="/_blob/5ac22e1cfdee1072e027e8fda6d1aa7e" alt="3D floating stairs, the first steps lit red" class="{{img0}}"><img src="/_blob/358ef8545b1ba4141c5ee05d4323ed64" alt="" class="{{img1}}"><img src="/_blob/a52536fe11487626d7c680dd805ca2b2" alt="" class="{{img2}}"></div>
+<div class="sprog" aria-hidden="true"><span class="{{pg0}}"></span><span class="{{pg1}}"></span><span class="{{pg2}}"></span></div>
+<div aria-hidden="true" style="display: flex; justify-content: space-between; font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px"><span class="slab {{pg0}}">Understand</span><span class="slab {{pg1}}">Define</span><span class="slab {{pg2}}">Execute</span></div>
+</div>
+<ol style="flex: 1.1 1 460px; list-style: none; margin: 0; padding: 0"><li ref="{{regStep0}}" class="sstep {{st0}}">
+<span class="big" aria-hidden="true">01+</span>
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; color: #ec1c24; font-size: 16px">01+ Understand</span>
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(30px, 3vw, 44px); line-height: 1; color: #f2f0ec">Business &amp; market diagnostics</span>
+<span style="color: #8f8b84; font-size: 17px; line-height: 1.65; max-width: 46ch">We assess the business, market, competitors, audience, positioning, existing marketing efforts and key gaps to uncover opportunities and challenges.</span>
+</li><li ref="{{regStep1}}" class="sstep {{st1}}">
+<span class="big" aria-hidden="true">02+</span>
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; color: #ec1c24; font-size: 16px">02+ Define</span>
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(30px, 3vw, 44px); line-height: 1; color: #f2f0ec">Strategic direction &amp; creative framing</span>
+<span style="color: #8f8b84; font-size: 17px; line-height: 1.65; max-width: 46ch">We translate insights into clear strategic direction — positioning, messaging, campaign thinking, creative direction and priorities.</span>
+</li><li ref="{{regStep2}}" class="sstep {{st2}}">
+<span class="big" aria-hidden="true">03+</span>
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; color: #ec1c24; font-size: 16px">03+ Execute</span>
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(30px, 3vw, 44px); line-height: 1; color: #f2f0ec">Performance &amp; continuous improvement</span>
+<span style="color: #8f8b84; font-size: 17px; line-height: 1.65; max-width: 46ch">We turn strategy into action through the right channels, focused execution, tracking, measurement and continuous optimization.</span>
+</li></ol>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="clients" style="border-top: 1px solid #161616">
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(96px, 10vw, 160px); display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 20px"><p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">Clients</p><h2 onMouseEnter="{{scramble}}" id="clients" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(48px, 6.6vw, 104px); line-height: 0.9; margin: 0; color: #f2f0ec">Trusted by the names<br>that build the market.</h2></div>
+<a href="Clients.dc.html" onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-line" style="font-size: 15px">Clients and industries <span style="color: #ec1c24">+</span></a>
+</div>
+<div class="lwall"><div class="ltile" role="img" aria-label="Misr Italia" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 0.0000%"></span></div><div class="ltile" role="img" aria-label="City Edge Developments" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 6.2500%"></span></div><div class="ltile" role="img" aria-label="Ramatan Developments" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 12.5000%"></span></div><div class="ltile" role="img" aria-label="ORA" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 18.7500%"></span></div><div class="ltile" role="img" aria-label="Mountain View" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 25.0000%"></span></div><div class="ltile" role="img" aria-label="Hyde Park Developments" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 31.2500%"></span></div><div class="ltile" role="img" aria-label="Memaar Almorshedy" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 37.5000%"></span></div><div class="ltile" role="img" aria-label="Brilliant Developments" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 43.7500%"></span></div><div class="ltile" role="img" aria-label="Gold's Gym" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 50.0000%"></span></div><div class="ltile" role="img" aria-label="Luxury Agency" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 56.2500%"></span></div><div class="ltile" role="img" aria-label="Palm Hills Developments" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 62.5000%"></span></div><div class="ltile" role="img" aria-label="Azdan" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 68.7500%"></span></div><div class="ltile" role="img" aria-label="Mosader.com" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 75.0000%"></span></div><div class="ltile" role="img" aria-label="SODIC" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 81.2500%"></span></div><div class="ltile" role="img" aria-label="Il Cazar Developments" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 87.5000%"></span></div><div class="ltile" role="img" aria-label="Tameer" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 93.7500%"></span></div><div class="ltile" role="img" aria-label="Droubiz" onMouseMove="{{tilt}}" onMouseLeave="{{tiltOut}}"><span class="lg" style="background-position: 0 100.0000%"></span></div></div>
+</div>
+</section>
+
+<section aria-labelledby="why" style="border-top: 1px solid #161616">
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(96px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: clamp(40px, 6vw, 110px); align-items: center"><div style="flex: 1 1 400px"><div class="frame" style="aspect-ratio: 780 / 1010; max-height: 720px; width: 100%"><video class="vid" src="/_blob/e05f1657d4869ae6e5aa9aa6283a6ff8" autoplay="" loop="" muted="" playsinline="" aria-label="People circle the doors and enter the red Ads Plus+ door" ref="{{playVideo}}"></video><div class="shade"></div><span class="cm c1"></span><span class="cm c2"></span><span class="cm c3"></span><span class="cm c4"></span></div></div><div style="flex: 1.2 1 460px; display: flex; flex-direction: column; gap: 22px"><p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">Why Ads Plus+</p><h2 onMouseEnter="{{scramble}}" id="why" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(44px, 5.6vw, 88px); line-height: 0.9; margin: 0; color: #f2f0ec">Marketing for businesses where the decision matters.</h2><p style="font-size: 18px; line-height: 1.65; color: #8f8b84; margin: 0; max-width: 50ch">Clients work with us when strategy needs to stay connected to execution, and execution needs to stay accountable to the business objective.</p><ul style="list-style: none; margin: 12px 0 0; padding: 0"><li style="padding: 24px 0; border-top: 1px solid #161616; display: flex; gap: 18px">
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; color: #ec1c24; font-size: 28px; line-height: 1">+</span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 21px; color: #f2f0ec">Strategy before execution</span><span style="color: #8f8b84; font-size: 16px; line-height: 1.6">Business-first thinking before channels, content or campaigns.</span></span></li><li style="padding: 24px 0; border-top: 1px solid #161616; display: flex; gap: 18px">
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; color: #ec1c24; font-size: 28px; line-height: 1">+</span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 21px; color: #f2f0ec">Real estate expertise</span><span style="color: #8f8b84; font-size: 16px; line-height: 1.6">Experience in a high-consideration category where positioning, demand and timing matter.</span></span></li><li style="padding: 24px 0; border-top: 1px solid #161616; display: flex; gap: 18px">
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; color: #ec1c24; font-size: 28px; line-height: 1">+</span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 21px; color: #f2f0ec">One connected direction</span><span style="color: #8f8b84; font-size: 16px; line-height: 1.6">Strategy, creative, media, production and execution working from the same brief.</span></span></li><li style="padding: 24px 0; border-top: 1px solid #161616; display: flex; gap: 18px">
+<span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; color: #ec1c24; font-size: 28px; line-height: 1">+</span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 21px; color: #f2f0ec">Continuous optimization</span><span style="color: #8f8b84; font-size: 16px; line-height: 1.6">Performance data and market learning shape the next decision.</span></span></li></ul></div></div>
+</section>
+
+<section aria-labelledby="markets" style="position: relative; overflow: clip; border-top: 1px solid #161616">
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(96px, 10vw, 160px); display: flex; flex-direction: column; gap: 44px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 20px"><p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">Markets</p><h2 onMouseEnter="{{scramble}}" id="markets" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(48px, 6.6vw, 104px); line-height: 0.9; margin: 0; color: #f2f0ec">Local expertise.<br>Regional perspective.</h2></div>
+<p style="font-size: 17px; line-height: 1.65; color: #8f8b84; margin: 0; max-width: 34ch">From our headquarters in Cairo to the Gulf and international markets.</p>
+</div>
+<figure class="mapfig"><img src="/_blob/e094f52500337bd5f062b7c8e73b6dbf" alt="Map of Egypt and the Gulf: Cairo headquarters connected to Riyadh, Jeddah, Kuwait, Manama, Doha, Abu Dhabi, Dubai and Muscat, with a line out to international markets"><svg class="mapov" viewBox="0 0 1600 1072" aria-hidden="true"><path class="arc" d="M369.6 238.9 Q679.2 219.7 988.8 473.0"></path><path class="arc" d="M369.6 238.9 Q528.2 355.1 686.8 610.8"></path><path class="arc" d="M369.6 238.9 Q704.4 106.2 1039.2 268.2"></path><path class="arc" d="M369.6 238.9 Q756.4 152.1 1143.2 405.6"></path><path class="arc" d="M369.6 238.9 Q775.4 164.2 1181.2 446.7"></path><path class="arc" d="M369.6 238.9 Q832.2 157.7 1294.8 483.5"></path><path class="arc" d="M369.6 238.9 Q850.2 133.3 1330.8 450.7"></path><path class="arc" d="M369.6 238.9 Q913.0 140.9 1456.4 521.1"></path><path class="arc intl" d="M369.6 238.9 Q219.6 68.9 40 70"></path><circle class="ring" cx="988.8" cy="473.0" r="7" style="animation-delay: 0.00s"></circle><circle class="ring r2" cx="988.8" cy="473.0" r="7" style="animation-delay: 1.40s"></circle><circle class="core" cx="988.8" cy="473.0" r="6"></circle><text class="lbl sm" x="1004.8" y="513.0" text-anchor="start">Riyadh</text><circle class="ring" cx="686.8" cy="610.8" r="7" style="animation-delay: 0.31s"></circle><circle class="ring r2" cx="686.8" cy="610.8" r="7" style="animation-delay: 1.71s"></circle><circle class="core" cx="686.8" cy="610.8" r="6"></circle><text class="lbl sm" x="668.8" y="618.8" text-anchor="end">Jeddah</text><circle class="ring" cx="1039.2" cy="268.2" r="7" style="animation-delay: 0.62s"></circle><circle class="ring r2" cx="1039.2" cy="268.2" r="7" style="animation-delay: 2.02s"></circle><circle class="core" cx="1039.2" cy="268.2" r="6"></circle><text class="lbl sm" x="1039.2" y="242.2" text-anchor="middle">Kuwait</text><circle class="ring" cx="1143.2" cy="405.6" r="7" style="animation-delay: 0.93s"></circle><circle class="ring r2" cx="1143.2" cy="405.6" r="7" style="animation-delay: 2.33s"></circle><circle class="core" cx="1143.2" cy="405.6" r="6"></circle><text class="lbl sm" x="1125.2" y="395.6" text-anchor="end">Manama</text><circle class="ring" cx="1181.2" cy="446.7" r="7" style="animation-delay: 1.24s"></circle><circle class="ring r2" cx="1181.2" cy="446.7" r="7" style="animation-delay: 2.64s"></circle><circle class="core" cx="1181.2" cy="446.7" r="6"></circle><text class="lbl sm" x="1167.2" y="476.7" text-anchor="end">Doha</text><circle class="ring" cx="1294.8" cy="483.5" r="7" style="animation-delay: 1.55s"></circle><circle class="ring r2" cx="1294.8" cy="483.5" r="7" style="animation-delay: 2.95s"></circle><circle class="core" cx="1294.8" cy="483.5" r="6"></circle><text class="lbl sm" x="1294.8" y="523.5" text-anchor="middle">Abu Dhabi</text><circle class="ring" cx="1330.8" cy="450.7" r="7" style="animation-delay: 1.86s"></circle><circle class="ring r2" cx="1330.8" cy="450.7" r="7" style="animation-delay: 3.26s"></circle><circle class="core" cx="1330.8" cy="450.7" r="6"></circle><text class="lbl sm" x="1346.8" y="436.7" text-anchor="start">Dubai</text><circle class="ring" cx="1456.4" cy="521.1" r="7" style="animation-delay: 2.17s"></circle><circle class="ring r2" cx="1456.4" cy="521.1" r="7" style="animation-delay: 3.57s"></circle><circle class="core" cx="1456.4" cy="521.1" r="6"></circle><text class="lbl sm" x="1474.4" y="529.1" text-anchor="start">Muscat</text><circle class="ring" cx="369.6" cy="238.9" r="12"></circle><circle class="ring r2" cx="369.6" cy="238.9" r="12"></circle><circle class="core" cx="369.6" cy="238.9" r="11"></circle><circle class="core hq" cx="369.6" cy="238.9" r="4"></circle><text class="lbl big" x="395.6" y="288.9">Cairo</text><text class="lbl red" x="395.6" y="320.9">Headquarters</text><text class="lbl" x="48" y="54">International +</text><text class="lbl red" x="1251.2" y="623.0">GCC</text><text class="lbl red" x="219.60000000000002" y="468.9">Egypt</text></svg></figure>
+<div style="display: flex; flex-wrap: wrap; gap: 32px"><div style="flex: 1 1 260px; padding-top: 24px; border-top: 1px solid #ec1c24; display: flex; flex-direction: column; gap: 10px">
+<h3 style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 4vw, 56px); margin: 0; color: #f2f0ec">Egypt</h3><p style="margin: 0; color: #8f8b84; font-size: 16px; line-height: 1.6">Deep understanding of the Egyptian market and its business landscape.</p></div><div style="flex: 1 1 260px; padding-top: 24px; border-top: 1px solid #ec1c24; display: flex; flex-direction: column; gap: 10px">
+<h3 style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 4vw, 56px); margin: 0; color: #f2f0ec">GCC</h3><p style="margin: 0; color: #8f8b84; font-size: 16px; line-height: 1.6">Strategic experience across Gulf markets and their evolving opportunities.</p></div><div style="flex: 1 1 260px; padding-top: 24px; border-top: 1px solid #ec1c24; display: flex; flex-direction: column; gap: 10px">
+<h3 style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(40px, 4vw, 56px); margin: 0; color: #f2f0ec">International</h3><p style="margin: 0; color: #8f8b84; font-size: 16px; line-height: 1.6">Extending our marketing expertise across international markets.</p></div></div>
+</div>
+</section>
+
+<section aria-labelledby="talk" style="position: relative; overflow: hidden; border-top: 1px solid #161616">
+<div class="beam" style="left: 40%; opacity: .7"></div>
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; padding-top: clamp(96px, 10vw, 160px); padding-bottom: clamp(96px, 10vw, 160px); display: flex; flex-wrap: wrap; gap: clamp(40px, 6vw, 110px); align-items: center"><div style="flex: 1.2 1 460px; display: flex; flex-direction: column; gap: 26px"><p style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; font-style: italic; font-size: 15px; color: #ec1c24; margin: 0">Contact</p><h2 onMouseEnter="{{scramble}}" id="talk" style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(64px, 10vw, 168px); line-height: 0.84; margin: 0; color: #f2f0ec">Let's<br>talk<span style="color: #ec1c24">+</span></h2><p style="font-size: 19px; line-height: 1.65; color: #8f8b84; margin: 0; max-width: 40ch">Tell us the business objective. We'll come back with the marketing direction built from it.</p><div style="display: flex; flex-wrap: wrap; gap: 14px"><a onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-red" href="Contact.dc.html" style="font-size: 16px">Start a project</a><a onMouseMove="{{mag}}" onMouseLeave="{{magOut}}" class="btn btn-line" href="tel:+201021657065" style="font-size: 16px">+20 102 165 7065</a></div></div><div style="flex: 1 1 360px"><div class="frame" style="aspect-ratio: 1012 / 1414; max-height: 640px; width: 100%"><video class="vid" src="/_blob/15d4435730891610323c9c48994a793b" autoplay="" loop="" muted="" playsinline="" aria-label="Man on a red phone at a desk in a field, the monitor shows the Ads Plus+ logo" ref="{{playVideo}}"></video><div class="shade"></div><span class="cm c1"></span><span class="cm c2"></span><span class="cm c3"></span><span class="cm c4"></span></div></div></div>
+</section>
+
+</main>
+<footer style="position: relative; overflow: hidden; border-top: 1px solid #161616">
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; padding-top: 72px; padding-bottom: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; flex: 1 1 280px">
+<img src="/_blob/dcc4ff63c4fca7a50df5fc93155b700e" alt="Ads Plus+" style="height: 30px; width: auto; align-self: flex-start">
+<p style="margin: 0; color: #8f8b84; font-size: 15px; line-height: 1.6; max-width: 32ch">Strategic marketing consultancy. Cairo, Egypt. Working across Egypt, the Gulf and international markets since 2018.</p>
+</div>
+<nav aria-label="Footer" style="display: flex; flex-direction: column; gap: 12px; flex: 0 1 160px; font-size: 15px">
+<a href="About.dc.html" style="text-decoration: none">About</a><a href="Services.dc.html" style="text-decoration: none">Services</a><a href="Clients.dc.html" style="text-decoration: none">Clients</a><a href="Contact.dc.html" style="text-decoration: none">Contact</a>
+</nav>
+<div style="display: flex; flex-direction: column; gap: 12px; flex: 0 1 260px; font-size: 15px">
+<a href="https://www.instagram.com/adsplus_agency" style="text-decoration: none">Instagram</a>
+<a href="https://www.linkedin.com/search/results/all/?keywords=ads%20plus%20agency" style="text-decoration: none">LinkedIn</a>
+<a href="tel:+201021657065" style="text-decoration: none">+20 102 165 7065</a>
+</div>
+</div>
+<div class="marq slow" aria-hidden="true" style="padding: 28px 0; border-top: 1px solid #161616; border-bottom: 1px solid #161616"><div class="track"><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(90px, 15vw, 240px); line-height: 1.05" class="outline">BUILT TO SELL</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(90px, 15vw, 240px); line-height: 1.05; color: #ec1c24">+</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(90px, 15vw, 240px); line-height: 1.05" class="outline">BUILT TO SELL</span><span style="font-family: Aileron, 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.03em; font-size: clamp(90px, 15vw, 240px); line-height: 1.05; color: #ec1c24">+</span></div></div>
+<div style="max-width: 1360px; margin: 0 auto; padding-left: clamp(20px, 4vw, 64px); padding-right: clamp(20px, 4vw, 64px); box-sizing: border-box; position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 22px; padding-bottom: 28px; font-size: 13px; color: #5f5c58"><span>© Ads Plus+</span><span><span class="cdot {{openCls}}" aria-hidden="true"></span>Cairo {{cairoTime}} · {{openText}}</span></div>
+</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":9900},"officeOpen":{"editor":"text","default":"10:00","section":"Office hours"},"officeClose":{"editor":"text","default":"18:00","section":"Office hours"},"workDays":{"editor":"enum","options":["Sun–Thu","Mon–Fri","Sat–Thu","Sun–Fri"],"default":"Sun–Thu","section":"Office hours"}}'>
+const DOORS = [{"n": "01+", "t": "Marketing consultancy", "d": "Where every project starts: analysis, audits, positioning, opportunity identification and planning.", "cta": "Start a project", "href": "Contact.dc.html"}, {"n": "02+", "t": "Performance marketing", "d": "Paid ads, lead generation, targeting and optimization.", "cta": "Explore the service", "href": "Services.dc.html"}, {"n": "03+", "t": "Campaign management", "d": "Planning, coordination, execution and monitoring.", "cta": "Explore the service", "href": "Services.dc.html"}, {"n": "04+", "t": "Media production", "d": "Photography, videography, visual content and campaign assets.", "cta": "Explore the service", "href": "Services.dc.html"}, {"n": "05+", "t": "Social media management", "d": "Content strategy, editorial planning, social presence and community.", "cta": "Explore the service", "href": "Services.dc.html"}, {"n": "06+", "t": "Events & activations", "d": "Launches, experiences, sales events and physical activations.", "cta": "Explore the service", "href": "Services.dc.html"}, {"n": "07+", "t": "PR & communications", "d": "Media relations, brand communication and strategic communications.", "cta": "Explore the service", "href": "Services.dc.html"}];
+class Component extends DCLogic {
+  _st(k, d) { return (this.state && this.state[k] !== undefined) ? this.state[k] : d; }
+  componentDidMount() {
+    this._steps = this._steps || [];
+    if (typeof IntersectionObserver !== 'undefined') {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const i = this._steps.indexOf(e.target);
+          if (i >= 0 && i !== this._st('step', 0)) this.setState({ step: i });
+        });
+      }, { rootMargin: '-42% 0px -42% 0px' });
+      this._steps.forEach((el) => { if (el) this._io.observe(el); });
+    }
+    this._onScroll = (e) => {
+      const t = e && e.target;
+      const y = Math.max(window.scrollY || 0, (t && t.scrollTop) || 0, (document.documentElement && document.documentElement.scrollTop) || 0);
+      if (!this._autoLit && y > 40) { this._autoLit = true; if (!this._st('lightsOn', false)) this._lightsOn(); }
+      this._updateWords();
+    };
+    document.addEventListener('scroll', this._onScroll, { capture: true, passive: true });
+    window.addEventListener('resize', this._onScroll);
+    this._updateWords();
+    this._tick = setInterval(() => this.setState({ tick: Date.now() }), 30000);
+  }
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    document.removeEventListener('scroll', this._onScroll, { capture: true });
+    window.removeEventListener('resize', this._onScroll);
+    clearInterval(this._tick); clearTimeout(this._t1); clearTimeout(this._t2); clearTimeout(this._t3);
+  }
+  _lightsOn() {
+    this.setState({ lightsOn: true, flash: true, lightsDone: false });
+    clearTimeout(this._t1); clearTimeout(this._t2);
+    this._t1 = setTimeout(() => this.setState({ flash: false }), 1400);
+    this._t2 = setTimeout(() => this.setState({ lightsDone: true }), 1700);
+  }
+  _updateWords() {
+    const el = this._wordsEl;
+    if (!el || !el.getBoundingClientRect) return;
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight || 800;
+    const p = Math.max(0, Math.min(1, (vh * 0.92 - r.top) / (vh * 0.5)));
+    const n = Math.round(p * 9);
+    if (n !== this._st('words', -1)) this.setState({ words: n });
+  }
+  _reg(i) {
+    this._regs = this._regs || [];
+    if (!this._regs[i]) {
+      this._regs[i] = (el) => {
+        this._steps = this._steps || [];
+        if (el) { this._steps[i] = el; if (this._io) this._io.observe(el); }
+      };
+    }
+    return this._regs[i];
+  }
+  _clock() {
+    const p = this.props || {};
+    const map = { 'Sun–Thu': [0, 1, 2, 3, 4], 'Mon–Fri': [1, 2, 3, 4, 5], 'Sat–Thu': [6, 0, 1, 2, 3, 4], 'Sun–Fri': [0, 1, 2, 3, 4, 5] };
+    const days = map[p.workDays || 'Sun–Thu'] || map['Sun–Thu'];
+    const open = p.officeOpen || '10:00';
+    const close = p.officeClose || '18:00';
+    try {
+      const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Cairo', hour: '2-digit', minute: '2-digit', weekday: 'short', hour12: false }).formatToParts(new Date());
+      const get = (t) => (parts.find((x) => x.type === t) || {}).value || '';
+      const hh = (parseInt(get('hour'), 10) || 0) % 24;
+      const mm = parseInt(get('minute'), 10) || 0;
+      const wd = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+      const toMin = (str) => { const a = String(str).split(':'); return (parseInt(a[0], 10) || 0) * 60 + (parseInt(a[1], 10) || 0); };
+      const now = hh * 60 + mm;
+      const isOpen = days.indexOf(wd) >= 0 && now >= toMin(open) && now < toMin(close);
+      return { time: String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0'), open: isOpen, text: isOpen ? 'Open now' : 'Closed now · opens ' + open };
+    } catch (err) {
+      return { time: '', open: false, text: '' };
+    }
+  }
+  _handlers() {
+    if (this._h) return this._h;
+    const h = {};
+    h.play = (el) => { if (!el) return; el.muted = true; const pr = el.play && el.play(); if (pr && pr.catch) pr.catch(() => {}); };
+    h.skip = () => this.setState({ skip: true });
+    h.words = (el) => { if (el) { this._wordsEl = el; this._updateWords(); } };
+    h.toggle = () => { if (this._st('lightsOn', false)) { this._autoLit = true; this.setState({ lightsOn: false, lightsDone: false }); } else { this._autoLit = true; this._lightsOn(); } };
+    h.dOut = () => this.setState({ door: -1 });
+    h.dIn = DOORS.map((d, i) => () => this.setState({ door: i }));
+    h.heroMove = (e) => { const el = e.currentTarget; const r = el.getBoundingClientRect(); el.style.setProperty('--mx', Math.round(e.clientX - r.left) + 'px'); el.style.setProperty('--my', Math.round(e.clientY - r.top) + 'px'); };
+    h.heroLeave = (e) => { e.currentTarget.style.removeProperty('--mx'); e.currentTarget.style.removeProperty('--my'); };
+    h.mag = (e) => { const el = e.currentTarget; const r = el.getBoundingClientRect(); const dx = (e.clientX - (r.left + r.width / 2)) * 0.28; const dy = (e.clientY - (r.top + r.height / 2)) * 0.4; el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)'; };
+    h.magOut = (e) => { e.currentTarget.style.transform = ''; };
+    h.tilt = (e) => { const el = e.currentTarget; const r = el.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width; const py = (e.clientY - r.top) / r.height; el.style.setProperty('--rx', ((0.5 - py) * 16).toFixed(2) + 'deg'); el.style.setProperty('--ry', ((px - 0.5) * 20).toFixed(2) + 'deg'); el.style.setProperty('--gx', (px * 100).toFixed(1) + '%'); el.style.setProperty('--gy', (py * 100).toFixed(1) + '%'); };
+    h.tiltOut = (e) => { const st = e.currentTarget.style; st.setProperty('--rx', '0deg'); st.setProperty('--ry', '0deg'); };
+    h.scramble = (e) => {
+      let el = e.currentTarget;
+      if (!el) return;
+      if (!/^H[1-3]$/.test(el.tagName)) el = el.querySelector('h3, h2') || el;
+      if (el._scrOn) return;
+      el._scrOn = true;
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      let n;
+      while ((n = walker.nextNode())) { if (n.nodeValue.trim()) nodes.push([n, n.nodeValue]); }
+      const chars = 'ABCDEFGHJKLMNOPRSTUVWXYZ+++';
+      const total = 14;
+      let f = 0;
+      const id = setInterval(() => {
+        f += 1;
+        nodes.forEach(([node, txt]) => {
+          const reveal = Math.floor(txt.length * f / total);
+          let out = '';
+          for (let i = 0; i < txt.length; i++) {
+            const c = txt[i];
+            out += (i < reveal || c === ' ' || c.charCodeAt(0) === 10) ? c : chars[Math.floor(Math.random() * chars.length)];
+          }
+          node.nodeValue = out;
+        });
+        if (f >= total) { clearInterval(id); nodes.forEach(([node, txt]) => { node.nodeValue = txt; }); el._scrOn = false; }
+      }, 32);
+    };
+    h.egg = () => {
+      const now = Date.now();
+      this._clicks = (this._clicks || []).filter((t) => now - t < 2500);
+      this._clicks.push(now);
+      if (this._clicks.length >= 5) {
+        this._clicks = [];
+        this.setState({ rain: true });
+        clearTimeout(this._t3);
+        this._t3 = setTimeout(() => this.setState({ rain: false }), 5600);
+      }
+    };
+    this._h = h;
+    return h;
+  }
+  renderVals() {
+    const h = this._handlers();
+    const s = this._st('step', 0);
+    const st = (i) => (i === s ? 'on' : (i < s ? 'done' : ''));
+    const upto = (i) => (i <= s ? 'on' : '');
+    const door = this._st('door', -1);
+    const lightsOn = this._st('lightsOn', false);
+    const words = this._st('words', -1);
+    const clock = this._clock();
+    const vals = {
+      playVideo: h.play, skipIntro: h.skip, introCls: this._st('skip', false) ? 'gone' : '',
+      regStep0: this._reg(0), regStep1: this._reg(1), regStep2: this._reg(2),
+      st0: st(0), st1: st(1), st2: st(2), pg0: upto(0), pg1: upto(1), pg2: upto(2),
+      img0: s === 0 ? 'on' : '', img1: s === 1 ? 'on' : '', img2: s === 2 ? 'on' : '',
+      lightsCls: lightsOn ? (this._st('lightsDone', false) ? 'done' : 'on') : 'off',
+      switchCls: lightsOn ? 'on' : 'off', lightsPressed: lightsOn ? 'true' : 'false', toggleLights: h.toggle,
+      flash: this._st('flash', false), rain: this._st('rain', false), egg: h.egg,
+      wordsRef: h.words, heroMove: h.heroMove, heroLeave: h.heroLeave,
+      mag: h.mag, magOut: h.magOut, tilt: h.tilt, tiltOut: h.tiltOut, scramble: h.scramble,
+      dmCls: door >= 0 ? 'active' : '', hasDoor: door >= 0, noDoor: door < 0, dOut: h.dOut,
+      cur: door >= 0 ? DOORS[door] : DOORS[0],
+      doorList: DOORS.map((d, i) => Object.assign({}, d, { cls: i === door ? 'on' : '', enter: h.dIn[i], leave: h.dOut })),
+      cairoTime: clock.time, openText: clock.text, openCls: clock.open ? 'open' : ''
+    };
+    for (let i = 0; i < 9; i++) vals['w' + i] = i < words ? 'on' : '';
+    DOORS.forEach((d, i) => { vals['dc' + i] = i === door ? 'on' : ''; vals['dIn' + i] = h.dIn[i]; });
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
