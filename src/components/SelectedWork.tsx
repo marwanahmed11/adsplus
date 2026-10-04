@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { CASE_STUDIES } from '../data/content';
-import { ArrowUpRight, Plus } from 'lucide-react';
+import { CASE_STUDIES, CaseStudy } from '../data/content';
+import { ArrowUpRight } from 'lucide-react';
 
-export default function SelectedWork({ onSelectCaseStudy }) {
-  const [filter, setFilter] = useState('ALL');
+interface SelectedWorkProps {
+  onSelectCaseStudy: (project: CaseStudy) => void;
+}
 
-  const categories = ['ALL', 'Real Estate', 'Luxury Masterplans & Hospitality', 'Fitness & Wellness', 'FinTech & Global Supply Chain'];
+export default function SelectedWork({ onSelectCaseStudy }: SelectedWorkProps): React.JSX.Element {
+  const [filter, setFilter] = useState<string>('ALL');
 
   const filteredWork = filter === 'ALL'
     ? CASE_STUDIES
-    : CASE_STUDIES.filter((item) => item.category.toLowerCase().includes(filter.toLowerCase()));
+    : CASE_STUDIES.filter((item: CaseStudy) => item.category.toLowerCase().includes(filter.toLowerCase()));
 
   return (
     <section
@@ -93,7 +95,7 @@ export default function SelectedWork({ onSelectCaseStudy }) {
             gap: 'clamp(2rem, 3.5vw, 3.5rem)'
           }}
         >
-          {filteredWork.map((project) => (
+          {filteredWork.map((project: CaseStudy) => (
             <div
               key={project.id}
               className="work-tile"
@@ -260,7 +262,7 @@ export default function SelectedWork({ onSelectCaseStudy }) {
                       marginBottom: '1.5rem'
                     }}
                   >
-                    {project.services.map((s, sIdx) => (
+                    {project.services.map((s: string, sIdx: number) => (
                       <span
                         key={sIdx}
                         style={{

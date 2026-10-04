@@ -1,6 +1,13 @@
 import React from 'react';
 
-export function LinkedinIcon({ size = 18, color = 'currentColor', className = '' }) {
+interface IconProps {
+  size?: number;
+  color?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export function LinkedinIcon({ size = 18, color = 'currentColor', className = '', style }: IconProps): React.JSX.Element {
   return (
     <svg
       width={size}
@@ -12,6 +19,7 @@ export function LinkedinIcon({ size = 18, color = 'currentColor', className = ''
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
     >
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
       <rect x="2" y="9" width="4" height="12" />
@@ -20,7 +28,7 @@ export function LinkedinIcon({ size = 18, color = 'currentColor', className = ''
   );
 }
 
-export function InstagramIcon({ size = 18, color = 'currentColor', className = '' }) {
+export function InstagramIcon({ size = 18, color = 'currentColor', className = '', style }: IconProps): React.JSX.Element {
   return (
     <svg
       width={size}
@@ -32,6 +40,7 @@ export function InstagramIcon({ size = 18, color = 'currentColor', className = '
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
     >
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />

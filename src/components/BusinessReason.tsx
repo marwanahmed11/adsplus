@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function BusinessReason() {
-  const sectionRef = useRef(null);
-  const [inView, setInView] = useState(false);
-  const [highlightBusiness, setHighlightBusiness] = useState(false);
+export default function BusinessReason(): React.JSX.Element {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [inView, setInView] = useState<boolean>(false);
+  const [highlightBusiness, setHighlightBusiness] = useState<boolean>(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          // Highlight BUSINESS after a brief beat
           setTimeout(() => setHighlightBusiness(true), 400);
         }
       },
@@ -130,7 +129,7 @@ export default function BusinessReason() {
               { label: 'MORE CLARITY.', desc: 'Eliminate vanity metrics. Focus solely on unit economics and real buyers.' },
               { label: 'MORE DIRECTION.', desc: 'Clear strategic positioning before a single creative asset is designed.' },
               { label: 'MORE CONNECTION.', desc: 'Bridging boardroom commercial targets directly to execution in market.' }
-            ].map((pillar, idx) => (
+            ].map((pillar) => (
               <div
                 key={pillar.label}
                 style={{

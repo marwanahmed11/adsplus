@@ -1,4 +1,99 @@
-export const BRAND_INFO = {
+export interface BrandInfo {
+  name: string;
+  tagline: string;
+  subTagline: string;
+  founded: string;
+  headquarters: string;
+  phone: string;
+  phoneDisplay: string;
+  email: string;
+  instagram: string;
+  instagramUrl: string;
+  linkedin: string;
+  linkedinUrl: string;
+  marketsServed: string[];
+  corePhilosophy: string;
+}
+
+export interface ServiceItem {
+  id: string;
+  slug: string;
+  title: string;
+  tagline: string;
+  shortDesc: string;
+  fullDesc: string;
+  deliverables: string[];
+  idealFor: string;
+  metric: string;
+}
+
+export interface MethodStage {
+  number: string;
+  title: string;
+  subtitle: string;
+  philosophy: string;
+  description: string;
+  auditPoints: string[];
+  outcome: string;
+}
+
+export interface MetricItem {
+  label: string;
+  value: string;
+}
+
+export interface CaseStudy {
+  id: string;
+  client: string;
+  category: string;
+  location: string;
+  heroImage: string;
+  services: string[];
+  summary: string;
+  metrics: MetricItem[];
+  theBusiness: string;
+  theChallenge: string;
+  theOpportunity: string;
+  theStrategy: string;
+  theExecution: string;
+  theImpact: string;
+}
+
+export interface ClientLogo {
+  name: string;
+  file: string;
+  industry: string;
+}
+
+export interface IndustryItem {
+  name: string;
+  featured: boolean;
+  desc: string;
+}
+
+export interface WhyAdsPlusItem {
+  title: string;
+  description: string;
+}
+
+export interface MarketItem {
+  region: string;
+  title: string;
+  description: string;
+  focus: string;
+}
+
+export interface InsightItem {
+  id: string;
+  tag: string;
+  date: string;
+  title: string;
+  readTime: string;
+  summary: string;
+  content: string;
+}
+
+export const BRAND_INFO: BrandInfo = {
   name: "Ads Plus+",
   tagline: "Built To Sell+",
   subTagline: "Strategic Marketing Consultancy",
@@ -15,7 +110,7 @@ export const BRAND_INFO = {
   corePhilosophy: "Marketing should have a business reason behind it."
 };
 
-export const SERVICES_DATA = [
+export const SERVICES_DATA: ServiceItem[] = [
   {
     id: "01",
     slug: "marketing-consultancy",

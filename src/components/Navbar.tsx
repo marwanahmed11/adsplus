@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
-export default function Navbar({ onOpenProjectBrief }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+interface NavbarProps {
+  onOpenProjectBrief: () => void;
+}
+
+interface NavLinkItem {
+  label: string;
+  href: string;
+}
+
+export default function Navbar({ onOpenProjectBrief }: NavbarProps): React.JSX.Element {
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       if (window.scrollY > 40) {
         setScrolled(true);
       } else {
@@ -17,7 +26,7 @@ export default function Navbar({ onOpenProjectBrief }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const navLinks: NavLinkItem[] = [
     { label: 'Home', href: '#hero' },
     { label: 'About', href: '#about' },
     { label: 'Services', href: '#services' },
@@ -29,7 +38,7 @@ export default function Navbar({ onOpenProjectBrief }) {
     { label: 'Contact', href: '#contact' },
   ];
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string): void => {
     e.preventDefault();
     setMobileMenuOpen(false);
     const target = document.querySelector(href);
@@ -71,8 +80,10 @@ export default function Navbar({ onOpenProjectBrief }) {
             className="h-8 md:h-9 object-contain"
             style={{ height: '34px', width: 'auto' }}
             onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'inline-flex';
+              const target = e.currentTarget;
+              target.style.display = 'none';
+              const next = target.nextSibling as HTMLElement | null;
+              if (next) next.style.display = 'inline-flex';
             }}
           />
           <span
@@ -285,7 +296,6 @@ export default function Navbar({ onOpenProjectBrief }) {
         </div>
       )}
 
-      {/* Style for displaying desktop nav above 1100px */}
       <style>{`
         @media (min-width: 1120px) {
           #desktop-nav {

@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { Phone, MapPin, CheckCircle2 } from 'lucide-react';
 import { LinkedinIcon, InstagramIcon } from './Icons';
-import { BRAND_INFO, SERVICES_DATA } from '../data/content';
+import { BRAND_INFO, SERVICES_DATA, ServiceItem } from '../data/content';
 
-export default function ContactSection() {
-  const [formData, setFormData] = useState({
+interface ContactFormData {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  market: string;
+  service: string;
+  budget: string;
+  challenge: string;
+}
+
+export default function ContactSection(): React.JSX.Element {
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     company: '',
     email: '',
@@ -15,15 +26,15 @@ export default function ContactSection() {
     challenge: ''
   });
 
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setSubmitting(true);
     setTimeout(() => {
@@ -32,7 +43,6 @@ export default function ContactSection() {
     }, 900);
   };
 
-  // Direct WhatsApp Link with pre-filled intro
   const whatsappUrl = `https://wa.me/201021657065?text=${encodeURIComponent(
     `Hello Ads Plus+ Team. I would like to discuss a strategic marketing inquiry for my company.`
   )}`;
@@ -194,8 +204,8 @@ export default function ContactSection() {
                     textDecoration: 'none',
                     transition: 'border-color 0.25s ease'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#ed1c24')}
-                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)')}
+                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.borderColor = '#ed1c24')}
+                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)')}
                 >
                   <LinkedinIcon size={18} style={{ color: '#ed1c24' }} />
                   <div>
@@ -220,8 +230,8 @@ export default function ContactSection() {
                     textDecoration: 'none',
                     transition: 'border-color 0.25s ease'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#ed1c24')}
-                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)')}
+                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.borderColor = '#ed1c24')}
+                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)')}
                 >
                   <InstagramIcon size={18} style={{ color: '#ed1c24' }} />
                   <div>
@@ -392,7 +402,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       className="editorial-select"
                     >
-                      {SERVICES_DATA.map((s) => (
+                      {SERVICES_DATA.map((s: ServiceItem) => (
                         <option key={s.id} value={s.title}>
                           {s.id}+ {s.title}
                         </option>

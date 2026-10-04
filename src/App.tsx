@@ -24,14 +24,17 @@ import AboutModal from './components/AboutModal';
 import ProjectBriefModal from './components/ProjectBriefModal';
 import InsightModal from './components/InsightModal';
 
-export default function App() {
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
-  const [selectedService, setSelectedService] = useState(null);
-  const [selectedInsight, setSelectedInsight] = useState(null);
-  const [aboutModalOpen, setAboutModalOpen] = useState(false);
-  const [briefModalOpen, setBriefModalOpen] = useState(false);
+// Types
+import { CaseStudy, ServiceItem, InsightItem } from './data/content';
 
-  const handleOpenBrief = () => {
+export default function App(): React.JSX.Element {
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
+  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+  const [selectedInsight, setSelectedInsight] = useState<InsightItem | null>(null);
+  const [aboutModalOpen, setAboutModalOpen] = useState<boolean>(false);
+  const [briefModalOpen, setBriefModalOpen] = useState<boolean>(false);
+
+  const handleOpenBrief = (): void => {
     setBriefModalOpen(true);
   };
 
@@ -59,7 +62,7 @@ export default function App() {
 
         {/* 04 SERVICES: Built To Move Brands Forward */}
         <Services
-          onSelectService={(srv) => setSelectedService(srv)}
+          onSelectService={(srv: ServiceItem) => setSelectedService(srv)}
           onOpenProjectBrief={handleOpenBrief}
         />
 
@@ -68,7 +71,7 @@ export default function App() {
 
         {/* 06 SELECTED WORK: Strategy In Motion */}
         <SelectedWork
-          onSelectCaseStudy={(proj) => setSelectedCaseStudy(proj)}
+          onSelectCaseStudy={(proj: CaseStudy) => setSelectedCaseStudy(proj)}
         />
 
         {/* 07 CLIENTS: Trusted By Ambitious Businesses */}
@@ -88,7 +91,7 @@ export default function App() {
 
         {/* STRATEGIC INSIGHTS (Sitemap Requirement) */}
         <InsightsSection
-          onSelectInsight={(art) => setSelectedInsight(art)}
+          onSelectInsight={(art: InsightItem) => setSelectedInsight(art)}
         />
 
         {/* 12 FINAL CTA: Have A Business Challenge? */}

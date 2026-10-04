@@ -1,7 +1,14 @@
 import React from 'react';
-import { X, Clock } from 'lucide-react';
+import { X } from 'lucide-react';
+import { InsightItem } from '../data/content';
 
-export default function InsightModal({ article, onClose, onOpenBrief }) {
+interface InsightModalProps {
+  article: InsightItem | null;
+  onClose: () => void;
+  onOpenBrief: () => void;
+}
+
+export default function InsightModal({ article, onClose, onOpenBrief }: InsightModalProps): React.JSX.Element | null {
   if (!article) return null;
 
   return (

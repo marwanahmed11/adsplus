@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react';
 
-export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
-  const [followerPos, setFollowerPos] = useState({ x: -100, y: -100 });
-  const [hoverText, setHoverText] = useState('');
-  const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+interface Position {
+  x: number;
+  y: number;
+}
+
+export default function CustomCursor(): React.JSX.Element | null {
+  const [position, setPosition] = useState<Position>({ x: -100, y: -100 });
+  const [followerPos, setFollowerPos] = useState<Position>({ x: -100, y: -100 });
+  const [hoverText, setHoverText] = useState<string>('');
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    const onMouseMove = (e) => {
+    const onMouseMove = (e: MouseEvent): void => {
       setIsVisible(true);
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
-    const onMouseLeave = () => setIsVisible(false);
+    const onMouseLeave = (): void => setIsVisible(false);
 
     window.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseleave', onMouseLeave);
 
-    let animationFrame;
-    const animateFollower = () => {
+    let animationFrame: number;
+    const animateFollower = (): void => {
       setFollowerPos((prev) => ({
         x: prev.x + (position.x - prev.x) * 0.15,
         y: prev.y + (position.y - prev.y) * 0.15
@@ -29,12 +34,12 @@ export default function CustomCursor() {
     animationFrame = requestAnimationFrame(animateFollower);
 
     // Event delegation for cursor hover targets
-    const handleMouseOver = (e) => {
-      const target = e.target.closest('[data-cursor]');
+    const handleMouseOver = (e: MouseEvent): void => {
+      const target = (e.target as HTMLElement | null)?.closest('[data-cursor]');
       if (target) {
         setIsHovering(true);
         setHoverText(target.getAttribute('data-cursor') || '+');
-      } else if (e.target.closest('button, a, input, select, textarea, [role="button"]')) {
+      } else if ((e.target as HTMLElement | null)?.closest('button, a, input, select, textarea, [role="button"]')) {
         setIsHovering(true);
         setHoverText('+');
       } else {

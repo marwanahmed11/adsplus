@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
-export default function About({ onOpenAboutModal }) {
-  const [isHovered, setIsHovered] = useState(false);
+interface AboutProps {
+  onOpenAboutModal: () => void;
+}
+
+export default function About({ onOpenAboutModal }: AboutProps): React.JSX.Element {
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
     <section
@@ -143,8 +146,10 @@ export default function About({ onOpenAboutModal }) {
                   transition: 'filter 0.6s ease'
                 }}
                 onError={(e) => {
-                  e.target.style.display = 'none';
-                  if (e.target.nextSibling) e.target.nextSibling.style.display = 'block';
+                  const target = e.currentTarget;
+                  target.style.display = 'none';
+                  const next = target.nextSibling as HTMLElement | null;
+                  if (next) next.style.display = 'block';
                 }}
               />
               <img

@@ -1,7 +1,14 @@
 import React from 'react';
-import { X, ArrowRight, Check } from 'lucide-react';
+import { X } from 'lucide-react';
+import { CaseStudy, MetricItem } from '../data/content';
 
-export default function CaseStudyModal({ project, onClose, onOpenBrief }) {
+interface CaseStudyModalProps {
+  project: CaseStudy | null;
+  onClose: () => void;
+  onOpenBrief: () => void;
+}
+
+export default function CaseStudyModal({ project, onClose, onOpenBrief }: CaseStudyModalProps): React.JSX.Element | null {
   if (!project) return null;
 
   return (
@@ -96,7 +103,7 @@ export default function CaseStudyModal({ project, onClose, onOpenBrief }) {
               border: '1px solid rgba(255, 255, 255, 0.08)'
             }}
           >
-            {project.metrics.map((m, idx) => (
+            {project.metrics.map((m: MetricItem, idx: number) => (
               <div key={idx}>
                 <div
                   style={{

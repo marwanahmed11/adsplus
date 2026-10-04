@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, Phone } from 'lucide-react';
-import { SERVICES_DATA } from '../data/content';
+import { X, CheckCircle2 } from 'lucide-react';
+import { SERVICES_DATA, ServiceItem } from '../data/content';
 
-export default function ProjectBriefModal({ isOpen, onClose }) {
-  const [formData, setFormData] = useState({
+interface ProjectBriefModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+interface BriefFormData {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  service: string;
+  market: string;
+  budget: string;
+  brief: string;
+}
+
+export default function ProjectBriefModal({ isOpen, onClose }: ProjectBriefModalProps): React.JSX.Element | null {
+  const [formData, setFormData] = useState<BriefFormData>({
     name: '',
     company: '',
     email: '',
@@ -13,17 +29,17 @@ export default function ProjectBriefModal({ isOpen, onClose }) {
     budget: '$25k - $60k',
     brief: ''
   });
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setSubmitting(true);
     setTimeout(() => {
@@ -208,7 +224,7 @@ export default function ProjectBriefModal({ isOpen, onClose }) {
                   onChange={handleChange}
                   className="editorial-select"
                 >
-                  {SERVICES_DATA.map((s) => (
+                  {SERVICES_DATA.map((s: ServiceItem) => (
                     <option key={s.id} value={s.title}>
                       {s.id}+ {s.title}
                     </option>

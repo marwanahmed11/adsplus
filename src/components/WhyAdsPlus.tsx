@@ -1,7 +1,11 @@
 import React from 'react';
-import { WHY_ADS_PLUS } from '../data/content';
+import { WHY_ADS_PLUS, WhyAdsPlusItem } from '../data/content';
 
-export default function WhyAdsPlus({ onOpenProjectBrief }) {
+interface WhyAdsPlusProps {
+  onOpenProjectBrief: () => void;
+}
+
+export default function WhyAdsPlus({ onOpenProjectBrief }: WhyAdsPlusProps): React.JSX.Element {
   return (
     <section
       id="why"
@@ -42,7 +46,7 @@ export default function WhyAdsPlus({ onOpenProjectBrief }) {
             gap: '1.5rem'
           }}
         >
-          {WHY_ADS_PLUS.map((block, idx) => (
+          {WHY_ADS_PLUS.map((block: WhyAdsPlusItem, idx: number) => (
             <div
               key={idx}
               data-cursor="ADVANTAGE"
@@ -56,12 +60,12 @@ export default function WhyAdsPlus({ onOpenProjectBrief }) {
                 justifyContent: 'space-between',
                 transition: 'border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease'
               }}
-              onMouseEnter={(e) => {
+              onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
                 e.currentTarget.style.borderColor = 'rgba(237, 28, 36, 0.5)';
                 e.currentTarget.style.backgroundColor = 'rgba(237, 28, 36, 0.03)';
                 e.currentTarget.style.transform = 'translateY(-4px)';
               }}
-              onMouseLeave={(e) => {
+              onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
                 e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                 e.currentTarget.style.backgroundColor = '#0a0a0a';
                 e.currentTarget.style.transform = 'translateY(0)';

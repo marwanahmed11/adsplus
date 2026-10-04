@@ -1,7 +1,14 @@
 import React from 'react';
-import { X, ArrowRight, Check } from 'lucide-react';
+import { X, Check } from 'lucide-react';
+import { ServiceItem } from '../data/content';
 
-export default function ServiceDetailModal({ service, onClose, onOpenBrief }) {
+interface ServiceDetailModalProps {
+  service: ServiceItem | null;
+  onClose: () => void;
+  onOpenBrief: () => void;
+}
+
+export default function ServiceDetailModal({ service, onClose, onOpenBrief }: ServiceDetailModalProps): React.JSX.Element | null {
   if (!service) return null;
 
   return (
@@ -88,7 +95,7 @@ export default function ServiceDetailModal({ service, onClose, onOpenBrief }) {
                 gap: '0.85rem'
               }}
             >
-              {service.deliverables.map((item, idx) => (
+              {service.deliverables.map((item: string, idx: number) => (
                 <div
                   key={idx}
                   style={{

@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import { INSIGHTS_DATA } from '../data/content';
-import { ArrowUpRight, BookOpen, Clock } from 'lucide-react';
+import React from 'react';
+import { INSIGHTS_DATA, InsightItem } from '../data/content';
+import { ArrowUpRight } from 'lucide-react';
 
-export default function InsightsSection({ onSelectInsight }) {
+interface InsightsSectionProps {
+  onSelectInsight: (article: InsightItem) => void;
+}
+
+export default function InsightsSection({ onSelectInsight }: InsightsSectionProps): React.JSX.Element {
   return (
     <section
       id="insights"
@@ -52,7 +56,7 @@ export default function InsightsSection({ onSelectInsight }) {
             gap: '2rem'
           }}
         >
-          {INSIGHTS_DATA.map((article) => (
+          {INSIGHTS_DATA.map((article: InsightItem) => (
             <article
               key={article.id}
               onClick={() => onSelectInsight(article)}
@@ -67,11 +71,11 @@ export default function InsightsSection({ onSelectInsight }) {
                 justifyContent: 'space-between',
                 transition: 'border-color 0.3s ease, transform 0.3s ease'
               }}
-              onMouseEnter={(e) => {
+              onMouseEnter={(e: React.MouseEvent<HTMLElement>) => {
                 e.currentTarget.style.borderColor = 'rgba(237, 28, 36, 0.5)';
                 e.currentTarget.style.transform = 'translateY(-4px)';
               }}
-              onMouseLeave={(e) => {
+              onMouseLeave={(e: React.MouseEvent<HTMLElement>) => {
                 e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}

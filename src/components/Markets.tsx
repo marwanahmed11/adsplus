@@ -1,9 +1,9 @@
 import React from 'react';
-import { MARKETS_DATA } from '../data/content';
-import { Globe, MapPin, Compass } from 'lucide-react';
+import { MARKETS_DATA, MarketItem } from '../data/content';
+import { Globe, MapPin, Compass, LucideIcon } from 'lucide-react';
 
-export default function Markets() {
-  const icons = [MapPin, Compass, Globe];
+export default function Markets(): React.JSX.Element {
+  const icons: LucideIcon[] = [MapPin, Compass, Globe];
 
   return (
     <section
@@ -37,7 +37,7 @@ export default function Markets() {
             gap: '1.5rem'
           }}
         >
-          {MARKETS_DATA.map((mkt, idx) => {
+          {MARKETS_DATA.map((mkt: MarketItem, idx: number) => {
             const Icon = icons[idx];
 
             return (
@@ -56,11 +56,11 @@ export default function Markets() {
                   overflow: 'hidden',
                   transition: 'border-color 0.3s ease, transform 0.3s ease'
                 }}
-                onMouseEnter={(e) => {
+                onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
                   e.currentTarget.style.borderColor = 'rgba(237, 28, 36, 0.5)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
-                onMouseLeave={(e) => {
+                onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}

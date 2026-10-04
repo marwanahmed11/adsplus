@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { SERVICES_DATA } from '../data/content';
-import { ArrowRight, Plus, Check } from 'lucide-react';
+import { SERVICES_DATA, ServiceItem } from '../data/content';
+import { ArrowRight } from 'lucide-react';
 
-export default function Services({ onSelectService, onOpenProjectBrief }) {
-  const [activeHoverId, setActiveHoverId] = useState(null);
-  const [expandedId, setExpandedId] = useState(null);
+interface ServicesProps {
+  onSelectService: (service: ServiceItem) => void;
+  onOpenProjectBrief: () => void;
+}
 
-  const toggleExpand = (id) => {
+export default function Services({ onSelectService, onOpenProjectBrief }: ServicesProps): React.JSX.Element {
+  const [activeHoverId, setActiveHoverId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const toggleExpand = (id: string): void => {
     setExpandedId(expandedId === id ? null : id);
   };
 
@@ -43,7 +48,7 @@ export default function Services({ onSelectService, onOpenProjectBrief }) {
 
         {/* 7 Interactive Full-Width Service Rows */}
         <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.12)' }}>
-          {SERVICES_DATA.map((srv) => {
+          {SERVICES_DATA.map((srv: ServiceItem) => {
             const isHovered = activeHoverId === srv.id;
             const isExpanded = expandedId === srv.id;
 
@@ -148,7 +153,7 @@ export default function Services({ onSelectService, onOpenProjectBrief }) {
                       gap: '3rem',
                       animation: 'modalSlideUp 0.3s ease forwards'
                     }}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
                   >
                     {/* Deep Rationale */}
                     <div>
@@ -188,7 +193,7 @@ export default function Services({ onSelectService, onOpenProjectBrief }) {
                         <span>DELIVERABLES & SCOPE</span>
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.65rem' }}>
-                        {srv.deliverables.map((item, idx) => (
+                        {srv.deliverables.map((item: string, idx: number) => (
                           <div
                             key={idx}
                             style={{

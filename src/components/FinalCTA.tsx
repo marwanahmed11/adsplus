@@ -1,8 +1,11 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
 
-export default function FinalCTA({ onOpenProjectBrief }) {
-  const scrollToContact = () => {
+interface FinalCTAProps {
+  onOpenProjectBrief: () => void;
+}
+
+export default function FinalCTA({ onOpenProjectBrief }: FinalCTAProps): React.JSX.Element {
+  const scrollToContact = (): void => {
     const el = document.querySelector('#contact');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -118,11 +121,11 @@ export default function FinalCTA({ onOpenProjectBrief }) {
                 cursor: 'pointer',
                 transition: 'all 0.3s ease'
               }}
-              onMouseEnter={(e) => {
+              onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.currentTarget.style.borderColor = '#ffffff';
                 e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
               }}
-              onMouseLeave={(e) => {
+              onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
                 e.currentTarget.style.backgroundColor = 'transparent';
               }}

@@ -1,8 +1,13 @@
 import React from 'react';
-import { X, Check, Award, Compass, TrendingUp } from 'lucide-react';
-import { BRAND_INFO } from '../data/content';
+import { X } from 'lucide-react';
 
-export default function AboutModal({ isOpen, onClose, onOpenBrief }) {
+interface AboutModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onOpenBrief: () => void;
+}
+
+export default function AboutModal({ isOpen, onClose, onOpenBrief }: AboutModalProps): React.JSX.Element | null {
   if (!isOpen) return null;
 
   return (

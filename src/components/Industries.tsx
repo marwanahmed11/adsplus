@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { INDUSTRIES_LIST } from '../data/content';
-import { ArrowUpRight } from 'lucide-react';
+import { INDUSTRIES_LIST, IndustryItem } from '../data/content';
 
-export default function Industries({ onOpenProjectBrief }) {
-  const [selectedIndustry, setSelectedIndustry] = useState(INDUSTRIES_LIST[0]);
+interface IndustriesProps {
+  onOpenProjectBrief: () => void;
+}
+
+export default function Industries({ onOpenProjectBrief }: IndustriesProps): React.JSX.Element {
+  const [selectedIndustry, setSelectedIndustry] = useState<IndustryItem>(INDUSTRIES_LIST[0]);
 
   return (
     <section
@@ -52,7 +55,7 @@ export default function Industries({ onOpenProjectBrief }) {
               alignItems: 'center'
             }}
           >
-            {INDUSTRIES_LIST.map((ind) => {
+            {INDUSTRIES_LIST.map((ind: IndustryItem) => {
               const isSelected = selectedIndustry.name === ind.name;
 
               return (
@@ -80,10 +83,10 @@ export default function Industries({ onOpenProjectBrief }) {
                     alignItems: 'baseline',
                     gap: '0.35rem'
                   }}
-                  onMouseEnter={(e) => {
+                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
                     if (!isSelected) e.currentTarget.style.color = '#ffffff';
                   }}
-                  onMouseLeave={(e) => {
+                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
                     if (!isSelected) e.currentTarget.style.color = ind.featured ? '#dcdad5' : '#888888';
                   }}
                 >

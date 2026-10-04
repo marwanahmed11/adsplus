@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function MissionVision() {
+export default function MissionVision(): React.JSX.Element {
   return (
     <section
       id="mission-vision"

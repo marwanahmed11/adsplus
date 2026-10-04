@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { CLIENT_LOGOS } from '../data/content';
+import { CLIENT_LOGOS, ClientLogo } from '../data/content';
 
-export default function Clients() {
-  const [activeFilter, setActiveFilter] = useState('ALL');
+export default function Clients(): React.JSX.Element {
+  const [activeFilter, setActiveFilter] = useState<string>('ALL');
 
-  const industries = ['ALL', 'Real Estate', 'Commercial & Retail', 'Fitness & Wellness', 'Technology & FinTech'];
-
-  const filteredLogos = activeFilter === 'ALL'
+  const filteredLogos: ClientLogo[] = activeFilter === 'ALL'
     ? CLIENT_LOGOS
-    : CLIENT_LOGOS.filter((c) => c.industry.toLowerCase().includes(activeFilter.toLowerCase()));
+    : CLIENT_LOGOS.filter((c: ClientLogo) => c.industry.toLowerCase().includes(activeFilter.toLowerCase()));
 
   return (
     <section
@@ -61,7 +59,7 @@ export default function Clients() {
             border: '1px solid rgba(255, 255, 255, 0.08)'
           }}
         >
-          {filteredLogos.map((client) => (
+          {filteredLogos.map((client: ClientLogo) => (
             <div
               key={client.name}
               className="client-logo-card"

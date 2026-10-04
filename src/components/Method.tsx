@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { METHOD_STAGES } from '../data/content';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { METHOD_STAGES, MethodStage } from '../data/content';
 
-export default function Method({ onOpenProjectBrief }) {
-  const [activeStage, setActiveStage] = useState(0);
+interface MethodProps {
+  onOpenProjectBrief: () => void;
+}
+
+export default function Method({ onOpenProjectBrief }: MethodProps): React.JSX.Element {
+  const [activeStage, setActiveStage] = useState<number>(0);
 
   return (
     <section
@@ -84,7 +87,7 @@ export default function Method({ onOpenProjectBrief }) {
 
               {/* Stage Step Indicators */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
-                {METHOD_STAGES.map((stg, idx) => {
+                {METHOD_STAGES.map((stg: MethodStage, idx: number) => {
                   const isActive = activeStage === idx;
                   return (
                     <button
@@ -168,7 +171,7 @@ export default function Method({ onOpenProjectBrief }) {
 
           {/* Right Stage Display Panels */}
           <div style={{ minHeight: '520px' }}>
-            {METHOD_STAGES.map((stg, idx) => {
+            {METHOD_STAGES.map((stg: MethodStage, idx: number) => {
               if (idx !== activeStage) return null;
 
               return (
@@ -249,7 +252,7 @@ export default function Method({ onOpenProjectBrief }) {
                         gap: '1rem'
                       }}
                     >
-                      {stg.auditPoints.map((point, pIdx) => (
+                      {stg.auditPoints.map((point: string, pIdx: number) => (
                         <div
                           key={pIdx}
                           style={{

@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
 
-export default function Hero({ onOpenProjectBrief }) {
-  const [phase, setPhase] = useState(0); // 0: black/initial, 1: logo flash, 2: 3D plus emerge, 3: full typography reveal
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+interface HeroProps {
+  onOpenProjectBrief: () => void;
+}
+
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+export default function Hero({ onOpenProjectBrief }: HeroProps): React.JSX.Element {
+  const [phase, setPhase] = useState<number>(0);
+  const [mousePos, setMousePos] = useState<MousePosition>({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Cinematic entrance sequence
-    const t1 = setTimeout(() => setPhase(1), 150);  // Logo emerges from dark
-    const t2 = setTimeout(() => setPhase(2), 900);  // Logo lifts, red 3D glass + emerges
-    const t3 = setTimeout(() => setPhase(3), 1600); // BUILT TO SELL+ typography resolves
+    const t1 = setTimeout(() => setPhase(1), 150);
+    const t2 = setTimeout(() => setPhase(2), 900);
+    const t3 = setTimeout(() => setPhase(3), 1600);
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent): void => {
       const { innerWidth, innerHeight } = window;
       const x = (e.clientX / innerWidth - 0.5) * 2;
       const y = (e.clientY / innerHeight - 0.5) * 2;
@@ -27,7 +35,7 @@ export default function Hero({ onOpenProjectBrief }) {
     };
   }, []);
 
-  const scrollToWork = () => {
+  const scrollToWork = (): void => {
     const el = document.querySelector('#work');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -99,8 +107,10 @@ export default function Hero({ onOpenProjectBrief }) {
             mixBlendMode: 'screen'
           }}
           onError={(e) => {
-            e.target.style.display = 'none';
-            if (e.target.nextSibling) e.target.nextSibling.style.display = 'block';
+            const target = e.currentTarget;
+            target.style.display = 'none';
+            const next = target.nextSibling as HTMLElement | null;
+            if (next) next.style.display = 'block';
           }}
         />
 

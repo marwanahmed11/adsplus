@@ -1,14 +1,23 @@
 import React from 'react';
 import { BRAND_INFO } from '../data/content';
-import { ArrowUp, Phone, Mail } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { LinkedinIcon, InstagramIcon } from './Icons';
 
-export default function Footer({ onOpenProjectBrief }) {
-  const scrollToTop = () => {
+interface FooterProps {
+  onOpenProjectBrief: () => void;
+}
+
+interface FooterLinkItem {
+  label: string;
+  href: string;
+}
+
+export default function Footer({ onOpenProjectBrief }: FooterProps): React.JSX.Element {
+  const scrollToTop = (): void => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navLinks = [
+  const navLinks: FooterLinkItem[] = [
     { label: 'Home', href: '#hero' },
     { label: 'About', href: '#about' },
     { label: 'Capabilities', href: '#services' },
@@ -92,7 +101,7 @@ export default function Footer({ onOpenProjectBrief }) {
             </div>
 
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-              {navLinks.map((item) => (
+              {navLinks.map((item: FooterLinkItem) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
@@ -107,8 +116,8 @@ export default function Footer({ onOpenProjectBrief }) {
                       alignItems: 'center',
                       gap: '0.4rem'
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#ed1c24')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#ffffff')}
+                    onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = '#ed1c24')}
+                    onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = '#ffffff')}
                   >
                     <span>{item.label}</span>
                   </a>
@@ -153,8 +162,8 @@ export default function Footer({ onOpenProjectBrief }) {
                     target="_blank"
                     rel="noreferrer"
                     style={{ color: '#bab6ad', textDecoration: 'none', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#ed1c24')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#bab6ad')}
+                    onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = '#ed1c24')}
+                    onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = '#bab6ad')}
                   >
                     <LinkedinIcon size={16} />
                     <span>LinkedIn</span>
@@ -164,8 +173,8 @@ export default function Footer({ onOpenProjectBrief }) {
                     target="_blank"
                     rel="noreferrer"
                     style={{ color: '#bab6ad', textDecoration: 'none', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#ed1c24')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#bab6ad')}
+                    onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = '#ed1c24')}
+                    onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = '#bab6ad')}
                   >
                     <InstagramIcon size={16} />
                     <span>Instagram</span>
